@@ -1,8 +1,8 @@
-##This is a university Project based on AlmasB's template
+# This is a university Project based on AlmasB's template
 
 For the original template, go to https://github.com/AlmasB/FXGL-MavenGradle
 
-##Uses Maven:
+## Uses Maven:
 if maven is not available on you right side build tab, right click on pom.xml
 
 ![img.png](img.png)
