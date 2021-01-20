@@ -18,7 +18,7 @@ public class Player {
     public ArrayList<Ship> shipInstances = new ArrayList<>();
 
 
-    private int health = /*5+4+3+2+*/1; //numbers of tiles per ship type
+    private int health = /*5+4+3+*/2+1; //numbers of tiles per ship type
 
     public Player() {
     }
