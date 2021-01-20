@@ -29,10 +29,10 @@ public class TileFactory implements EntityFactory {
      * these arrays get filed with tiles on spawn, used to iterate over them on click to show change of state on screen
      * by changing the tile's color. Uses 4 array lists to make check logic inside getBoardState() less complicated
      */
-    static ArrayList<Entity> player1shipTiles = new ArrayList<Entity>();
-    static ArrayList<Entity> player1hitTiles = new ArrayList<Entity>();
-    static ArrayList<Entity> player2shipTiles = new ArrayList<Entity>();
-    static ArrayList<Entity> player2hitTiles = new ArrayList<Entity>();
+    static ArrayList<Entity> player1shipTiles = new ArrayList<>();
+    static ArrayList<Entity> player1hitTiles = new ArrayList<>();
+    static ArrayList<Entity> player2shipTiles = new ArrayList<>();
+    static ArrayList<Entity> player2hitTiles = new ArrayList<>();
 
 
     /**

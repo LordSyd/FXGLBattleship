@@ -32,7 +32,7 @@ public class BoardState {
                 new Point2D(x, y + 1)
         };
 
-        List<Integer> neighbors = new ArrayList<Integer>();
+        List<Integer> neighbors = new ArrayList<>();
 
         for (Point2D p : points) {
             if (isValidPoint(p)) {
@@ -51,11 +51,8 @@ public class BoardState {
 
     }
 
-    public boolean isValidPoint(Point2D point) {
-        return isValidPoint(point.getX(), point.getY());
-    }
+    public boolean isValidPoint(Point2D point) { return isValidPoint(point.getX(), point.getY()); }
 
-    public boolean isValidPoint(double x, double y) {
-        return x >= 0 && x < 10 && y >= 0 && y < 10;
-    }
+    public boolean isValidPoint(double x, double y) { return x >= 0 && x < 10 && y >= 0 && y < 10; }
+
 }
