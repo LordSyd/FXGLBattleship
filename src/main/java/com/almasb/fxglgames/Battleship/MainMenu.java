@@ -28,8 +28,7 @@ public class MainMenu extends FXGLMenu {
     public MainMenu() {
         super(MenuType.MAIN_MENU);
 
-        Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
-        FXGL.getAudioPlayer().loopMusic(menuSong);
+
 
         Runnable testAction = this::fireNewGame;
 
@@ -86,14 +85,11 @@ public class MainMenu extends FXGLMenu {
 
     }
 
-
-
-
-
-
-
-
-
+    @Override
+    protected void onUpdate(double tpf) {
+        Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
+        FXGL.getAudioPlayer().loopMusic(menuSong);
+    }
 
     @Override
     protected Button createActionButton(String name, Runnable action) {

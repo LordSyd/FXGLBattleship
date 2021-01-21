@@ -13,12 +13,14 @@ import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 
-
+import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 //todo fix placement of boards
 
 public class BattleshipMain extends GameApplication {
+
+
     /**
      * Because this App was written using an existing javaFX Battleship implementation by Almas Baimagambetov as
      * reference, some classes and methods may either be redundant or might me exchanged for simple variables. In the
@@ -29,15 +31,17 @@ public class BattleshipMain extends GameApplication {
      * Also for testing purposes the boards of player one and player two are spawned on different sides of the screen
      */
 
-    static protected Player player1 = new Player();
-    static protected Player player2 = new Player();
-    static protected int player1ShipsToPlace = 5;
-    static protected int player2ShipsToPlace = 5;
-    static private boolean gameRunning = false;
-    static private boolean player1Turn = true;
-    static protected boolean betweenTurnMenuActive = false;
-    static protected boolean GameOverMenuActive = false;
-    static protected boolean AIActive = false;
+    static protected Player player1;
+    static protected Player player2;
+    static protected int player1ShipsToPlace;
+    static protected int player2ShipsToPlace;
+    static private boolean gameRunning;
+    static private boolean player1Turn;
+    static protected boolean betweenTurnMenuActive;
+    static protected boolean GameOverMenuActive;
+    static protected boolean AIActive;
+
+
 
     public static boolean isAIActive() {
         return AIActive;
@@ -88,10 +92,13 @@ public class BattleshipMain extends GameApplication {
     }
 
     /**
-     * adds Entity Factories and calls spawn method for boards, also starts main music loop
+     * adds Entity Factories and calls spawn method for boards, also starts main music loop. Initializes game Variables for resetting
      */
     @Override
     protected void initGame() {
+        initializeVariables();
+
+
         Music mainSong = FXGL.getAssetLoader().loadMusic("Plasma_Connection.wav");
         FXGL.getAudioPlayer().loopMusic(mainSong);
 
@@ -103,6 +110,18 @@ public class BattleshipMain extends GameApplication {
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
+    }
+
+    private void initializeVariables() {
+        player1 = new Player();
+        player2 = new Player();
+        player1ShipsToPlace = 5;
+        player2ShipsToPlace = 5;
+        gameRunning = false;
+        player1Turn = true;
+        betweenTurnMenuActive = false;
+        GameOverMenuActive = false;
+        AIActive = false;
     }
 
     /**
