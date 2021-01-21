@@ -7,6 +7,8 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -98,6 +100,10 @@ public class BattleshipMain extends GameApplication {
     protected void initGame() {
         initializeVariables();
 
+        buildBackground();
+
+
+
 
         Music mainSong = FXGL.getAssetLoader().loadMusic("Plasma_Connection.wav");
         FXGL.getAudioPlayer().loopMusic(mainSong);
@@ -107,9 +113,24 @@ public class BattleshipMain extends GameApplication {
 
         //Spawn  hitBoard player 1
         spawnHitBoard(1);
+        System.out.println("spawned");
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
+    }
+
+    @Override
+    protected void onPreInit() {
+        initializeVariables();
+    }
+
+    private static void buildBackground() {
+        Entity background = entityBuilder()
+                .view("ocean_animated.gif")
+                .at(0,0)
+                .zIndex(-500)
+                .scale(3,4)
+                .buildAndAttach();
     }
 
     private void initializeVariables() {
@@ -132,6 +153,7 @@ public class BattleshipMain extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
+
         deadPlayer = checkPlayerDead();
 
         if (deadPlayer != 0){
@@ -160,6 +182,7 @@ public class BattleshipMain extends GameApplication {
      */
     @Override
     protected void initUI() {
+
 
         Text testText = FXGL.getUIFactoryService().newText(
                 "This is a test\nThis is a new line", Color.BLUE, 20);
@@ -238,6 +261,8 @@ public class BattleshipMain extends GameApplication {
             spawnShipBoard(2);
         }
 
+        buildBackground();
+
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
     }
 
@@ -256,6 +281,8 @@ public class BattleshipMain extends GameApplication {
      * @param player
      */
     private static void spawnShipBoard(int player){
+        TileFactory.player1shipTiles.clear();
+        TileFactory.player2shipTiles.clear();
 
 
         int startX = 0;

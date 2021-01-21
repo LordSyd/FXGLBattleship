@@ -85,10 +85,12 @@ public class MainMenu extends FXGLMenu {
 
     }
 
+
     @Override
-    protected void onUpdate(double tpf) {
+    public void onCreate() {
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
         FXGL.getAudioPlayer().loopMusic(menuSong);
+
     }
 
     @Override
