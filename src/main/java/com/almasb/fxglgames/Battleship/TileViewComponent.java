@@ -19,8 +19,13 @@ public class TileViewComponent extends ChildViewComponent {
 
     public TileViewComponent(Color color) {
         this.tileColor = color;
+        int red = (int) tileColor.getRed();
+        int green = (int) tileColor.getGreen();
+        int blue = (int) tileColor.getBlue();
 
-        bg.setFill(tileColor);
+
+        bg.setFill(Color.rgb(red,green,blue, 0.60));
+
 
         Rectangle bg2 = new Rectangle(31, 31, Color.rgb(10, 100, 250, 0.25));
         bg2.setStrokeWidth(2);

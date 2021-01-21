@@ -6,6 +6,7 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
+import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -153,11 +154,14 @@ public class TileFactory implements EntityFactory {
 
         tile.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
+            play( "switch_005.wav");
+
             if (e.getButton() == MouseButton.SECONDARY){
                 tile.getComponent(ClickBehaviourComponent.class).onSecondaryClick();
             }else if (e.getButton() == MouseButton.PRIMARY) {
                 tile.getComponent(ClickBehaviourComponent.class).onPrimaryClick();
             }
+
         });
         return tile;
     }
