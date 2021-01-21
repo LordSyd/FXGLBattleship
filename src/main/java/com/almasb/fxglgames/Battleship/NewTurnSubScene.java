@@ -12,7 +12,8 @@ import javafx.scene.text.TextAlignment;
 import static com.almasb.fxgl.dsl.FXGL.*;
 /**
  * This class governs the layout of the screen shown between turns. It gets passed the state of the game through it's
- * constructor. Not all cases are implemented at the moment
+ * constructor. First case checks if the ships are placed, if not the player gets a message to place ships.
+ * After the ships are placed the next message indicates turn order of the players. GameRunning is true after the ships are placed.
  */
 
 //todo get rid of placeholder text

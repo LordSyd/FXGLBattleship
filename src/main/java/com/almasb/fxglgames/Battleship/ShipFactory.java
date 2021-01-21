@@ -16,7 +16,9 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 
 /**
- * This class is not functional at the moment. Logic for spawning needs to be written and hooked up
+ * This class is not functional at the moment. Logic for spawning needs to be written and hooked up.
+ *
+ * Ships get a graphical look for different levels like horizontal and vertical.
  */
 
 public class ShipFactory implements EntityFactory {
