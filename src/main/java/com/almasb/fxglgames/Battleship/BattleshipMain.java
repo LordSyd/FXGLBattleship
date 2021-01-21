@@ -189,9 +189,17 @@ public class BattleshipMain extends GameApplication {
 
 
         Text testText = FXGL.getUIFactoryService().newText(
-                "This is a test\nThis is a new line", Color.BLUE, 20);
+                "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
+                        "--> Right Click: \n      Horizontal placing\n" +
+                        "\n\n" +
+                        "BOARD INFORMATION\n" +
+                        "--> Top: shooting\n" +
+                        "--> Bottom: place ships\n" +
+                        "\n\n\n" +
+                        "         HAVE FUN!!!",
+                        Color.BLACK, 20);
         testText.setTranslateY(100);
-        testText.setTranslateX(1000);
+        testText.setTranslateX(950);
         addUINode(testText);
     }
     /**
