@@ -145,9 +145,6 @@ public class TileFactory implements EntityFactory {
     @Spawns("tile")
     public Entity newTile(SpawnData data) {
 
-
-
-
         TileViewComponent original = new TileViewComponent(Color.GRAY);
 
         var tile = entityBuilder(data)
@@ -157,8 +154,6 @@ public class TileFactory implements EntityFactory {
                 .with(new ClickBehaviourComponent())
                 .build();
 
-
-
         tile.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
             if (e.getButton() == MouseButton.SECONDARY){
@@ -166,7 +161,6 @@ public class TileFactory implements EntityFactory {
             }else if (e.getButton() == MouseButton.PRIMARY) {
                 tile.getComponent(ClickBehaviourComponent.class).onPrimaryClick();
             }
-
         });
         return tile;
     }

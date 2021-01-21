@@ -78,7 +78,7 @@ public class Player {
 
     }
 
-    public boolean isDead(){return health == 0;};
+    public boolean isDead(){return health == 0;}
 
     public void hit() {
         health--;

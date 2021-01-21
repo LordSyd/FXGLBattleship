@@ -24,19 +24,21 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
 
 
         String nextPlayerText = "I should not appear";
-        var text = getUIFactoryService().newText(nextPlayerText , Color.GOLD, 32);
+        var text = getUIFactoryService().newText(nextPlayerText, Color.GOLD, 32);
 
-        if (!gameRunning){
-            switch (nextPlayerID){
+        if (!gameRunning) {
+
+            switch (nextPlayerID) {
                 case 1 -> nextPlayerText = "Player One - Place your ships";
                 case 2 -> nextPlayerText = "Player Two - Place your ships";
             }
         }else{
-            switch (nextPlayerID){
-                case 1 -> nextPlayerText = "Player One - it´s your turn";
-                case 2 -> nextPlayerText = "Player Two - it´s your turn";
+                switch (nextPlayerID){
+                    case 1 -> nextPlayerText = "Player One - it´s your turn";
+                    case 2 -> nextPlayerText = "Player Two - it´s your turn";
+                }
             }
-        }
+
 
         text = getUIFactoryService().newText(nextPlayerText , Color.GOLD, 30);
 
@@ -48,13 +50,10 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
         bg.setStroke(Color.WHITE);
         bg.setStrokeWidth(10);
 
-
         var button = new FXGLButton("READY");
         button.setOnAction(this);
         button.setTranslateX(100);
         button.setTranslateY(400);
-
-
 
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().add(stackPane);
@@ -62,13 +61,10 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
 
     }
 
-
-
     @Override
     public void handle(ActionEvent event) {
 
         Player activePlayer;
-
 
         System.out.println("pressed");
 
@@ -80,7 +76,6 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
             activePlayer = BattleshipMain.player2;
         }
         ShipFactory.updateShipSpawns(activePlayer);
-
     }
 }
 

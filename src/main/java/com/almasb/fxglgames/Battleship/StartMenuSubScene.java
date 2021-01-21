@@ -35,7 +35,6 @@ public class StartMenuSubScene  extends SubScene implements EventHandler<ActionE
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().add(stackPane);
         getContentRoot().getChildren().add(button);
-
     }
 
     @Override

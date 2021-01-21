@@ -117,9 +117,10 @@ public class BattleshipMain extends GameApplication {
     protected void onUpdate(double tpf) {
         deadPlayer = checkPlayerDead();
 
-        if (!GameOverMenuActive && deadPlayer != 0){
+        if (deadPlayer != 0){
             GameOverMenuActive = true;
             showGameOverMenu();
+            System.out.println("activated");
         }
     }
 

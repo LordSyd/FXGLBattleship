@@ -28,7 +28,6 @@ public class GameOverScreen  extends SubScene implements EventHandler<ActionEven
                 case 2 -> deadPlayerText = "Player Two Lost!";
             }
 
-
         text = getUIFactoryService().newText(deadPlayerText , Color.RED, 30);
 
         text.setTextAlignment(TextAlignment.CENTER);
@@ -44,11 +43,8 @@ public class GameOverScreen  extends SubScene implements EventHandler<ActionEven
         button.setTranslateX(100);
         button.setTranslateY(400);
 
-
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().add(stackPane);
-
-
 
     }
 
@@ -56,7 +52,6 @@ public class GameOverScreen  extends SubScene implements EventHandler<ActionEven
     public void handle(ActionEvent event) {
 
         BattleshipMain.closeTurnMenu();
-
 
     }
 }
