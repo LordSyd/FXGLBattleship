@@ -166,6 +166,12 @@ public class BattleshipMain extends GameApplication {
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
+
+        if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0){
+
+            gameRunning = true;
+        }
+
         if (player1Turn){
             getSceneService().pushSubScene(new NewTurnSubScene(1, gameRunning));
         }else{
@@ -213,10 +219,7 @@ public class BattleshipMain extends GameApplication {
             spawnHitBoard(2);
             spawnShipBoard(2);
         }
-        if (player1ShipsToPlace == 0 && player2ShipsToPlace ==0){
 
-            gameRunning = true;
-        }
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
     }
 
