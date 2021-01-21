@@ -7,15 +7,20 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 
-
+import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 //todo fix placement of boards
 
 public class BattleshipMain extends GameApplication {
+
+
     /**
      * Because this App was written using an existing javaFX Battleship implementation by Almas Baimagambetov as
      * reference, some classes and methods may either be redundant or might me exchanged for simple variables. In the
@@ -26,15 +31,25 @@ public class BattleshipMain extends GameApplication {
      * Also for testing purposes the boards of player one and player two are spawned on different sides of the screen
      */
 
-    static protected Player player1 = new Player();
-    static protected Player player2 = new Player();
-    static protected int player1ShipsToPlace = 5;
-    static protected int player2ShipsToPlace = 5;
-    static private boolean gameRunning = false;
-    static private boolean player1Turn = true;
-    static protected boolean betweenTurnMenuActive = false;
-    static protected boolean GameOverMenuActive = false;
+    static protected Player player1;
+    static protected Player player2;
+    static protected int player1ShipsToPlace;
+    static protected int player2ShipsToPlace;
+    static private boolean gameRunning;
+    static private boolean player1Turn;
+    static protected boolean betweenTurnMenuActive;
+    static protected boolean GameOverMenuActive;
+    static protected boolean AIActive;
 
+
+
+    public static boolean isAIActive() {
+        return AIActive;
+    }
+
+    public static void setAIActive(boolean AIActive) {
+        BattleshipMain.AIActive = AIActive;
+    }
 
     private int deadPlayer = 0;
 
@@ -53,10 +68,11 @@ public class BattleshipMain extends GameApplication {
     @Override
     protected void initSettings(GameSettings settings) {
 
+
         settings.setMainMenuEnabled(true);
 
 
-        /*settings.setSceneFactory(new SceneFactory()
+        settings.setSceneFactory(new SceneFactory()
 
         {
             @NotNull
@@ -64,7 +80,7 @@ public class BattleshipMain extends GameApplication {
             public FXGLMenu newMainMenu() {
                 return new MainMenu();
             }
-        });*/
+        });
 
 
         settings.setTitle("Battleship");
@@ -76,10 +92,13 @@ public class BattleshipMain extends GameApplication {
     }
 
     /**
-     * adds Entity Factories and calls spawn method for boards, also starts main music loop
+     * adds Entity Factories and calls spawn method for boards, also starts main music loop. Initializes game Variables for resetting
      */
     @Override
     protected void initGame() {
+        initializeVariables();
+
+
         Music mainSong = FXGL.getAssetLoader().loadMusic("Plasma_Connection.wav");
         FXGL.getAudioPlayer().loopMusic(mainSong);
 
@@ -91,7 +110,18 @@ public class BattleshipMain extends GameApplication {
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
+    }
 
+    private void initializeVariables() {
+        player1 = new Player();
+        player2 = new Player();
+        player1ShipsToPlace = 5;
+        player2ShipsToPlace = 5;
+        gameRunning = false;
+        player1Turn = true;
+        betweenTurnMenuActive = false;
+        GameOverMenuActive = false;
+        AIActive = false;
     }
 
     /**
@@ -129,10 +159,14 @@ public class BattleshipMain extends GameApplication {
      * not used at the moment, test code remains inside for the time being
      */
     @Override
-    protected void initUI(){
+    protected void initUI() {
+
+        Text testText = FXGL.getUIFactoryService().newText(
+                "This is a test\nThis is a new line", Color.BLUE, 20);
+        testText.setTranslateY(100);
+        testText.setTranslateX(1000);
+        addUINode(testText);
     }
-
-
     /**
      * Some methods in here are only for future proofing and not in use at the moment
      */
@@ -147,18 +181,20 @@ public class BattleshipMain extends GameApplication {
      */
     static protected void showTurnMenu(){
 
-        if (player1ShipsToPlace == 0 && player2ShipsToPlace ==0){
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
+
+        getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
+
+        if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0){
 
             gameRunning = true;
         }
 
-        getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
         if (player1Turn){
             getSceneService().pushSubScene(new NewTurnSubScene(1, gameRunning));
         }else{
             getSceneService().pushSubScene(new NewTurnSubScene(2, gameRunning));
         }
-
     }
 
     protected void showGameOverMenu(){
@@ -202,6 +238,7 @@ public class BattleshipMain extends GameApplication {
             spawnShipBoard(2);
         }
 
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
     }
 
 
@@ -252,10 +289,6 @@ public class BattleshipMain extends GameApplication {
                     TileFactory.player2shipTiles.add(tile);
                 }
             }
-        }
-        if (player1ShipsToPlace == 0 && player2ShipsToPlace ==0){
-
-            gameRunning = true;
         }
     }
 
