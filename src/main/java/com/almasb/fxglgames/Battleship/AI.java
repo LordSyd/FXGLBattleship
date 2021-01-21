@@ -11,33 +11,47 @@ public class AI {
     public void EasyAI ()
     {
 
-            Random randomGenerator=new Random();
+        Random randomGenerator=new Random();
+
+        boolean shootAt;
+
+        int SchussX = randomGenerator.nextInt(10) + 1; // Ausgabe der Werte im Bereich 1-10
+        int SchussY = randomGenerator.nextInt(10) + 1;
 
 
-                int SchussX = randomGenerator.nextInt(10) + 1; // Ausgabe der Werte im Bereich 1-10
-                int SchussY = randomGenerator.nextInt(10) + 1;
+        do {
+            shootAt = BattleshipMain.player1.shoot(SchussY, SchussX);
 
-/*
-                while (hit(SchussY, SchussX) == true) //übergeben an HitMethode und solange Treffer, Übergabe weiterer Schüsse an hitMethod
-                {
-                 int SchussX = randomGenerator.nextInt(10) + 1);
-                 int SchussY = randomGenerator.nextInt(10) + 1);
-                 }
+            SchussX = randomGenerator.nextInt(10) + 1;
+            SchussY = randomGenerator.nextInt(10) + 1;
 
-                 player.shoot; /Benachrichtigung über Zug des Spielers
-
-
-                //if (Board[SchussY][SchussX])
-                //if (tile.getProperties().getValue("x") == true && tile.getProperties().getValue(SchussY) == true ) {
-
-                 }
+        }
+            while (!shootAt); //übergeben an ShootMethode und solange Treffer, Übergabe weiterer Schüsse an hitMethod
 
 
 
+     /*   public void AIplaceShip(SchiffPosiY, SchiffPosiX)
+        {
+            int SchiffPosiX = randomGenerator.nextInt(10) + 1;
+            int SchiffPosiY = randomGenerator.nextInt(10) + 1;
+
+
+
+            BattleshipMain.player2.placeShip(Ship ship, SchiffPosiY, SchiffPosiX);
+
+            SchiffPosiX = randomGenerator.nextInt(10) + 1;
+            SchiffPosiY = randomGenerator.nextInt(10) + 1;
+
+
+
+
+        }
 */
 
 
     }
+
+
 
 
 

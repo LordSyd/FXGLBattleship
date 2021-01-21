@@ -230,6 +230,7 @@ public class BattleshipMain extends GameApplication {
 
     /**
      * removes all spawned entities and checks turn boolean for which scene to push
+     * starts game when all ships are place by both players
      */
     static protected void showTurnMenu(){
 

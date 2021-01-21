@@ -37,10 +37,16 @@ public class Player {
 
     /**
      * shoots at this players ships, called by other player. For future reference:
-     * Ship Board:
+     *
+     * ship Board:
      * 1: Ship is there
      * 2: Ship was hit
      * 3: miss by enemy
+     *
+     * shots Board:
+     * 0: Nothing is there
+     * 1: Miss
+     * 2: Hit
      *
      * @param x
      * @param y
