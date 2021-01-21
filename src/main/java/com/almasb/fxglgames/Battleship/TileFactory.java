@@ -68,12 +68,10 @@ public class TileFactory implements EntityFactory {
                             temp = iterator.next();
                             int tempShipState = BattleshipMain.player1.getStateOfShipsCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
 
-                            if (tempShipState == 1) {
-
-                                temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
-
-                            } else if (tempShipState == 2) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.RED);
+                            switch (tempShipState) {
+                                case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
+                                case 2 -> temp.getComponent(TileViewComponent.class).setColor(Color.RED);
+                                case 3 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
                             }
                         }
                     }
@@ -83,12 +81,10 @@ public class TileFactory implements EntityFactory {
                             temp = iterator.next();
                             int tempShipState = BattleshipMain.player2.getStateOfShipsCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
 
-                            if (tempShipState == 1) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
-
-                            } else if (tempShipState == 2) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.RED);
-
+                            switch (tempShipState) {
+                                case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
+                                case 2 -> temp.getComponent(TileViewComponent.class).setColor(Color.RED);
+                                case 3 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
                             }
                         }
                     }
@@ -102,12 +98,9 @@ public class TileFactory implements EntityFactory {
                             temp = iterator.next();
                             int hitState = BattleshipMain.player2.getStateOfHitCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
 
-                            if (hitState == 1) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
-
-                            }else if (hitState == 2){
-                                temp.getComponent(TileViewComponent.class).setColor(Color.RED);
-
+                            switch (hitState) {
+                                case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
+                                case 2 -> temp.getComponent(TileViewComponent.class).setColor(Color.RED);
                             }
                         }
                     }
@@ -117,12 +110,9 @@ public class TileFactory implements EntityFactory {
                             temp = iterator.next();
                             int hitState = BattleshipMain.player1.getStateOfHitCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
 
-                            if (hitState == 1) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
-
-                            }else if (hitState == 2) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.RED);
-
+                            switch (hitState) {
+                                case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
+                                case 2 -> temp.getComponent(TileViewComponent.class).setColor(Color.RED);
                             }
                         }
                     }
