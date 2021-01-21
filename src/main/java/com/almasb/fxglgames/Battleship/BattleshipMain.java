@@ -252,6 +252,8 @@ public class BattleshipMain extends GameApplication {
     protected void showGameOverMenu(){
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
+
 
         Music gameOver = FXGL.getAssetLoader().loadMusic("20. Rush.wav");
 

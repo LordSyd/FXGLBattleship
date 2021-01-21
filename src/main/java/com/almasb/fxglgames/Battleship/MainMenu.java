@@ -51,17 +51,32 @@ public class MainMenu extends FXGLMenu {
 
         };
 
+        FXGL.getSettings().setGlobalSoundVolume(50);
+
+
+
+
 
         Slider volume = new Slider(0.0, 1.0, 1.0);
         volume.valueProperty().bindBidirectional(FXGL.getSettings().globalMusicVolumeProperty());
+        Slider sound = new Slider(0.0, 1.0, 1.0);
+        volume.valueProperty().bindBidirectional(FXGL.getSettings().globalSoundVolumeProperty());
 
         var textMusic =  FXGL.getUIFactoryService().newText(FXGL.localizedStringProperty("menu.music.volume").concat(": "));
         var percentMusic = FXGL.getUIFactoryService().newText("");
         percentMusic.textProperty().bind(volume.valueProperty().multiply(100).asString("%.0f"));
 
+        var textSound =  FXGL.getUIFactoryService().newText(FXGL.localizedStringProperty("menu.sound.volume").concat(": "));
+        var percentSound = FXGL.getUIFactoryService().newText("");
+        percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
+
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
         hBoxMusic.setTranslateX(100);
         hBoxMusic.setTranslateY(450);
+
+        HBox hBoxSound = new HBox(15, textSound, sound, percentSound );
+        hBoxSound.setTranslateX(100);
+        hBoxSound.setTranslateY(500);
 
 
 
@@ -79,7 +94,7 @@ public class MainMenu extends FXGLMenu {
 
 
 
-        getContentRoot().getChildren().addAll(againstAI, twoPlayer, hBoxMusic);
+        getContentRoot().getChildren().addAll(againstAI, twoPlayer, hBoxMusic, hBoxSound);
 
 
     }

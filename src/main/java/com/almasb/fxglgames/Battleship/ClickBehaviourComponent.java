@@ -1,13 +1,18 @@
 package com.almasb.fxglgames.Battleship;
 
+import com.almasb.fxgl.audio.Music;
+import com.almasb.fxgl.audio.Sound;
+import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
-
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
  * Class governs behavior on click - was handled by TileFactory before. Logic is basically the same
  */
 
 public class ClickBehaviourComponent extends Component{
+
+
 
 
         
@@ -44,7 +49,6 @@ public class ClickBehaviourComponent extends Component{
         String tileType = entity.getProperties().getValue("boardType");
 
 
-
         switch (tileType) {
 
             case "ship" -> {
@@ -60,12 +64,13 @@ public class ClickBehaviourComponent extends Component{
                                         entity.getProperties().getValue("x"), entity.getProperties().getValue("y")))
                                 {
                                     ShipFactory.updateShipSpawns(BattleshipMain.player1);
-
                                     TileFactory.getBoardStateColors(tileType, 1);
+
 
                                     if (--BattleshipMain.player1ShipsToPlace == 0) {
 
                                         BattleshipMain.setPlayer1Turn(false);
+
 
                                         BattleshipMain.showTurnMenu();
                                     }
@@ -85,6 +90,7 @@ public class ClickBehaviourComponent extends Component{
                                 )
                             {
                                 ShipFactory.updateShipSpawns(BattleshipMain.player2);
+
 
                                 TileFactory.getBoardStateColors(tileType,2);
 
@@ -130,5 +136,7 @@ public class ClickBehaviourComponent extends Component{
             }
         }
         TileFactory.updateBoardState();
+
+
     }
 }
