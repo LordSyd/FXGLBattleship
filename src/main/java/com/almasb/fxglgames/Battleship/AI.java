@@ -26,21 +26,34 @@ public class AI {
             SchussY = randomGenerator.nextInt(10) + 1;
 
         }
-            while (!shootAt); //übergeben an ShootMethode und solange Treffer, Übergabe weiterer Schüsse an hitMethod
+            while (!shootAt);
 
 
-
-     /*   public void AIplaceShip(SchiffPosiY, SchiffPosiX)
+/*
+        public void placeShipAI ()
         {
             int SchiffPosiX = randomGenerator.nextInt(10) + 1;
             int SchiffPosiY = randomGenerator.nextInt(10) + 1;
 
+            int success = 0;
+
+            boolean placed = BattleshipMain.player2.placeShip(Ship ship, SchiffPosiY, SchiffPosiX);
+
+            while (success < 6) {
+
+                if (placed) {
+                    SchiffPosiX = randomGenerator.nextInt(10) + 1;
+                    SchiffPosiY = randomGenerator.nextInt(10) + 1;
+                    success++;
+                }
+                else {
+                    SchiffPosiX = randomGenerator.nextInt(10) + 1;
+                    SchiffPosiY = randomGenerator.nextInt(10) + 1;
+                }
+
+            }
 
 
-            BattleshipMain.player2.placeShip(Ship ship, SchiffPosiY, SchiffPosiX);
-
-            SchiffPosiX = randomGenerator.nextInt(10) + 1;
-            SchiffPosiY = randomGenerator.nextInt(10) + 1;
 
 
 
@@ -59,7 +72,7 @@ public class AI {
 
 
 /*
-    //Computer schießt um das Schiff herum
+//Computer schießt um das Schiff herum
 //Vorsicht nicht über das Spielfeld hinausschießen
 //Wenn Computer Schiff trifft x-Achse abfragen (links rechts), //wenn nicht y-Achse abfragen bis Schüsse ins Leere gehen
 //Zusatzklausel, so lange schießen bis Leben aus ist?
@@ -70,14 +83,11 @@ public class AI {
     public void MediumAI (AnzahlSpielfelder)
     {
 
-
-
     }
 
 
 
     //Computer weiß wo Schiffe stehen und schießt nach gezieltem //versenken von Schiffen random im wasser umher
-
     public void HardAI (AnzahlSpielfelder)
     {
 
