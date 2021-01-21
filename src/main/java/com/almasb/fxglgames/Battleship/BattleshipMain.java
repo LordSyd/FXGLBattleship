@@ -7,11 +7,15 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -186,21 +190,34 @@ public class BattleshipMain extends GameApplication {
      */
     @Override
     protected void initUI() {
+        var bg = new Rectangle(200, 450, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.85));
+        bg.setArcWidth(50);
+        bg.setArcHeight(50);
+        bg.setStroke(Color.WHITE);
+        bg.setStrokeWidth(10);
+
+
 
 
         Text testText = FXGL.getUIFactoryService().newText(
                 "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
                         "--> Right Click: \n      Horizontal placing\n" +
                         "\n\n" +
-                        "BOARD INFORMATION\n" +
-                        "--> Top: shooting\n" +
-                        "--> Bottom: place ships\n" +
+                        "--> Top Board:\n " +
+                        "shooting\n" +
+                        "--> Bottom Board:\n" +
+                        " place ships\n" +
                         "\n\n\n" +
                         "         HAVE FUN!!!",
-                        Color.BLACK, 20);
-        testText.setTranslateY(100);
-        testText.setTranslateX(950);
-        addUINode(testText);
+                        Color.BLACK, 18);
+        testText.setTextAlignment(TextAlignment.LEFT);
+
+
+        var stackPane = new StackPane(bg, testText);
+        stackPane.setTranslateX(950);
+        stackPane.setTranslateY(70);
+
+        addUINode(stackPane);
     }
     /**
      * Some methods in here are only for future proofing and not in use at the moment

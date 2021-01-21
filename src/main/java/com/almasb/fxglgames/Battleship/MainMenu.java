@@ -19,9 +19,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * Game Menu graphical design designed by Almas Baimagambetov. Various buttons like new game, options and exit are created.
- * Not fully functioning at the moment, game uses default menu as of now.
- */
+ * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
+ * */
 
 public class MainMenu extends FXGLMenu {
 

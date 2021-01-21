@@ -1,4 +1,3 @@
-
 package com.almasb.fxglgames.Battleship;
 
 import com.almasb.fxgl.entity.Entity;
@@ -26,9 +25,10 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class TileFactory implements EntityFactory {
 
     /**
-     * These arrays get filed with tiles on spawn, used to iterate over them on click to show change of state on screen
+     * These arrays get filled with tiles on spawn, used to iterate over them on click to show change of state on screen
      * by changing the tile's color. Uses 4 array lists to make check logic inside getBoardState() less complicated
      */
+
     static ArrayList<Entity> player1shipTiles = new ArrayList<>();
     static ArrayList<Entity> player1hitTiles = new ArrayList<>();
     static ArrayList<Entity> player2shipTiles = new ArrayList<>();
@@ -66,7 +66,9 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity>  iterator = player1shipTiles.iterator();
                         for (int i = 0; i < player1shipTiles.size(); i++) {
                             temp = iterator.next();
-                            int tempShipState = BattleshipMain.player1.getStateOfShipsCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
+                            int tempShipState = BattleshipMain.player1.getStateOfShipsCell(
+                                    temp.getProperties().getValue("x"),
+                                    temp.getProperties().getValue("y"));
 
                             switch (tempShipState) {
                                 case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
@@ -79,7 +81,9 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity>  iterator = player2shipTiles.iterator();
                         for (int i = 0; i < player2shipTiles.size(); i++) {
                             temp = iterator.next();
-                            int tempShipState = BattleshipMain.player2.getStateOfShipsCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
+                            int tempShipState = BattleshipMain.player2.getStateOfShipsCell(
+                                    temp.getProperties().getValue("x"),
+                                    temp.getProperties().getValue("y"));
 
                             switch (tempShipState) {
                                 case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
@@ -96,7 +100,9 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity> iterator = player1hitTiles.iterator();
                         for (int i = 0; i < player1hitTiles.size(); i++) {
                             temp = iterator.next();
-                            int hitState = BattleshipMain.player2.getStateOfHitCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
+                            int hitState = BattleshipMain.player2.getStateOfHitCell(
+                                    temp.getProperties().getValue("x"),
+                                    temp.getProperties().getValue("y"));
 
                             switch (hitState) {
                                 case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
@@ -108,7 +114,9 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity> iterator = player2hitTiles.iterator();
                         for (int i = 0; i < player2hitTiles.size(); i++) {
                             temp = iterator.next();
-                            int hitState = BattleshipMain.player1.getStateOfHitCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
+                            int hitState = BattleshipMain.player1.getStateOfHitCell(
+                                    temp.getProperties().getValue("x"),
+                                    temp.getProperties().getValue("y"));
 
                             switch (hitState) {
                                 case 1 -> temp.getComponent(TileViewComponent.class).setColor(Color.BLACK);
@@ -124,7 +132,6 @@ public class TileFactory implements EntityFactory {
     //Todo update comment
 
     /**
-     *
      *Main part of the entity factory. Adds components on spawn and adds an event handler that handles click events
      *on the tiles. Event handler calls method in ClickBehaviourComponent depending on mouse button clicked.
      *
