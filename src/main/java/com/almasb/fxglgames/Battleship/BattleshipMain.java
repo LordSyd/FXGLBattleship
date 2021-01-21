@@ -233,6 +233,7 @@ public class BattleshipMain extends GameApplication {
      */
     static protected void showTurnMenu(){
 
+
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);

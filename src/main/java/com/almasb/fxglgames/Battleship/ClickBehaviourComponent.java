@@ -4,6 +4,8 @@ import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.component.Component;
+import javafx.util.Duration;
+
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
@@ -27,6 +29,11 @@ public class ClickBehaviourComponent extends Component{
         primary = false;
         onPrimaryClick();
 
+    }
+
+    private void waitAfterTurn(){
+        Runnable run = BattleshipMain::showTurnMenu;
+        FXGL.getGameTimer().runOnceAfter(run, Duration.millis(700));
     }
 
     /**
@@ -71,7 +78,8 @@ public class ClickBehaviourComponent extends Component{
                                     if (--BattleshipMain.player1ShipsToPlace == 0) {
 
                                         BattleshipMain.setPlayer1Turn(false);
-                                        BattleshipMain.showTurnMenu();
+                                        waitAfterTurn();
+
                                     }
                                 }
                             }
@@ -97,7 +105,7 @@ public class ClickBehaviourComponent extends Component{
 
                                     BattleshipMain.setPlayer1Turn(true);
 
-                                    BattleshipMain.showTurnMenu();
+                                    waitAfterTurn();
                                 }
                             }
                         }
@@ -115,7 +123,7 @@ public class ClickBehaviourComponent extends Component{
                                             entity.getProperties().getValue("x"),
                                             entity.getProperties().getValue("y"))) {
                                 BattleshipMain.setPlayer1Turn(false);
-                                BattleshipMain.showTurnMenu();
+                                waitAfterTurn();
                             }
                         }
 
@@ -127,7 +135,7 @@ public class ClickBehaviourComponent extends Component{
                                             entity.getProperties().getValue("x"),
                                             entity.getProperties().getValue("y"))) {
                                 BattleshipMain.setPlayer1Turn(true);
-                                BattleshipMain.showTurnMenu();
+                                waitAfterTurn();
                             }
                         }
                     }
