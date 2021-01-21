@@ -90,6 +90,7 @@ public class MainMenu extends FXGLMenu {
     public void onCreate() {
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
         FXGL.getAudioPlayer().loopMusic(menuSong);
+
     }
 
     @Override

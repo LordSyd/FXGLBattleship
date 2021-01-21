@@ -35,6 +35,18 @@ public class Player {
         return shots.getStateOfCell(x, y);
     }
 
+    /**
+     * shoots at this players ships, called by other player. For future reference:
+     * Ship Board:
+     * 1: Ship is there
+     * 2: Ship was hit
+     * 3: miss by enemy
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+
     public boolean shoot(int x, int y){
         if (shots.getStateOfCell(x,y) != 0){
             return false;
@@ -46,6 +58,7 @@ public class Player {
                 return false;
             }else{
                 shots.setStateOfCell(x,y, 1);
+                ships.setStateOfCell(x,y, 3);
             }
 
             return true;
