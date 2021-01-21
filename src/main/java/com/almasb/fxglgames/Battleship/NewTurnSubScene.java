@@ -12,7 +12,7 @@ import javafx.scene.text.TextAlignment;
 import static com.almasb.fxgl.dsl.FXGL.*;
 /**
  * This class governs the layout of the screen shown between turns. It gets passed the state of the game through it's
- * constructor. Not all cases are implemented at the moment
+ * constructor. Not all cases are implemented at the moment.
  */
 
 //todo get rid of placeholder text
