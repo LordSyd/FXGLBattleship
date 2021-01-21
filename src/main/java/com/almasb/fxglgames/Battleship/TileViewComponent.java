@@ -22,7 +22,7 @@ public class TileViewComponent extends ChildViewComponent {
 
         bg.setFill(tileColor);
 
-        Rectangle bg2 = new Rectangle(31, 31, Color.rgb(250, 250, 250, 0.25));
+        Rectangle bg2 = new Rectangle(31, 31, Color.rgb(20, 150, 250, 0.30));
         bg2.setStrokeWidth(2);
         bg2.setStroke(Color.BLACK);
 

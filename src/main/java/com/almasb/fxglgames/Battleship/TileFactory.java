@@ -70,7 +70,7 @@ public class TileFactory implements EntityFactory {
 
                             if (tempShipState == 1) {
 
-                                temp.getComponent(TileViewComponent.class).setColor(Color.BLUE);
+                                temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
 
                             } else if (tempShipState == 2) {
                                 temp.getComponent(TileViewComponent.class).setColor(Color.RED);
@@ -84,7 +84,7 @@ public class TileFactory implements EntityFactory {
                             int tempShipState = BattleshipMain.player2.getStateOfShipsCell(temp.getProperties().getValue("x"), temp.getProperties().getValue("y"));
 
                             if (tempShipState == 1) {
-                                temp.getComponent(TileViewComponent.class).setColor(Color.BLUE);
+                                temp.getComponent(TileViewComponent.class).setColor(Color.LIGHTGRAY);
 
                             } else if (tempShipState == 2) {
                                 temp.getComponent(TileViewComponent.class).setColor(Color.RED);
