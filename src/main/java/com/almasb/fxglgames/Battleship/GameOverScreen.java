@@ -12,7 +12,8 @@ import javafx.scene.text.TextAlignment;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
- * Simple layout class controlling the game over screen
+ * Simple layout class controlling the game over screen.
+ * It defines the placement of the text and the restart button.
  */
 
 public class GameOverScreen  extends SubScene implements EventHandler<ActionEvent> {

@@ -20,13 +20,13 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 /**
  * One of the most important classes of this app and where most of the magic happens. Uses a mouse event handler attached
- *  to each tile spawn to get if it was clicked. This event handler then calls the corresponding method of the attached ClickBehaviourComponent.
+ * to each tile spawn to get if it was clicked. This event handler then calls the corresponding method of the attached ClickBehaviourComponent.
  */
 
 public class TileFactory implements EntityFactory {
 
     /**
-     * these arrays get filed with tiles on spawn, used to iterate over them on click to show change of state on screen
+     * These arrays get filed with tiles on spawn, used to iterate over them on click to show change of state on screen
      * by changing the tile's color. Uses 4 array lists to make check logic inside getBoardState() less complicated
      */
     static ArrayList<Entity> player1shipTiles = new ArrayList<>();
@@ -36,7 +36,7 @@ public class TileFactory implements EntityFactory {
 
 
     /**
-     * method to streamline update between frames, could be optimised
+     * Method to streamline update between frames, could be optimised
      */
     protected static void updateBoardState(){
 

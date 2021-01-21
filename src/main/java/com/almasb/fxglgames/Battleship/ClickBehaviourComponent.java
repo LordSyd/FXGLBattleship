@@ -45,6 +45,10 @@ public class ClickBehaviourComponent extends Component{
         int playerId = entity.getProperties().getValue("Player");
         String tileType = entity.getProperties().getValue("boardType");
 
+
+        /** The first switch case ship controls the placement of the ships of player 1 and player 2.
+         * After the ships are places the next switch case hit allows players to shoot on the board.
+         */
         switch (tileType) {
 
             case "ship" -> {

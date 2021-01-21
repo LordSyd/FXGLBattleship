@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * This class represents the players. It has two arrays for saving the ship positions and where the player has shot,
  * if it hit anything and so on. It also has health that gets subtracted from on hit() and it checks if ships can be
- * placed. Also it has a method to return if the player isDead()
+ * placed. Also it has a method to return if the player isDead().
  */
 
 

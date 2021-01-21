@@ -103,8 +103,6 @@ public class BattleshipMain extends GameApplication {
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
-
-
     }
 
     /**

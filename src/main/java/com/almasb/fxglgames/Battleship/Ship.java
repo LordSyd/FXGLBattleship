@@ -4,7 +4,8 @@ import javafx.scene.Parent;
 
 /**
  * This class instantiates ships that has been placed as well saving their orientation. Used to save ship coordinates
- * and orientation for ship spawning
+ * and orientation for ship spawning.
+ * It also defines the health (lives) of the player, it is set by the type and length of a ship.
  */
 
 public class Ship extends Parent {
