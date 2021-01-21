@@ -154,11 +154,11 @@ public class TileFactory implements EntityFactory {
 
         tile.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
 
-            if (e.getButton() == MouseButton.SECONDARY){
+            play( "switch_005.wav");
 
+            if (e.getButton() == MouseButton.SECONDARY){
                 tile.getComponent(ClickBehaviourComponent.class).onSecondaryClick();
             }else if (e.getButton() == MouseButton.PRIMARY) {
-
                 tile.getComponent(ClickBehaviourComponent.class).onPrimaryClick();
             }
 

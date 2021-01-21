@@ -39,6 +39,7 @@ public class ClickBehaviourComponent extends Component{
 
     public void onPrimaryClick() {
 
+
         if (BattleshipMain.isPlayer1Turn()){
             ShipFactory.updateShipSpawns(BattleshipMain.player1);
         }else{
