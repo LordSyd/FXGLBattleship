@@ -7,6 +7,9 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 
@@ -92,6 +95,7 @@ public class BattleshipMain extends GameApplication {
         spawnShipBoard(1);
 
 
+
     }
 
     /**
@@ -128,10 +132,14 @@ public class BattleshipMain extends GameApplication {
      * not used at the moment, test code remains inside for the time being
      */
     @Override
-    protected void initUI(){
+    protected void initUI() {
+
+        Text testText = FXGL.getUIFactoryService().newText(
+                "This is a test\nThis is a new line", Color.BLUE, 20);
+        testText.setTranslateY(100);
+        testText.setTranslateX(1000);
+        addUINode(testText);
     }
-
-
     /**
      * Some methods in here are only for future proofing and not in use at the moment
      */
@@ -146,7 +154,7 @@ public class BattleshipMain extends GameApplication {
      */
     static protected void showTurnMenu(){
 
-
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
         if (player1Turn){
@@ -200,6 +208,7 @@ public class BattleshipMain extends GameApplication {
 
             gameRunning = true;
         }
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
     }
 
 

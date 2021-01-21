@@ -29,7 +29,7 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
         if (!gameRunning){
             switch (nextPlayerID){
                 case 1 -> nextPlayerText = "Player One - Place your ships";
-                case 2 -> nextPlayerText = "Player Two - Place your ships ";
+                case 2 -> nextPlayerText = "Player Two - Place your ships";
             }
         }else{
             switch (nextPlayerID){
