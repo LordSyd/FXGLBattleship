@@ -71,8 +71,6 @@ public class ClickBehaviourComponent extends Component{
                                     if (--BattleshipMain.player1ShipsToPlace == 0) {
 
                                         BattleshipMain.setPlayer1Turn(false);
-
-
                                         BattleshipMain.showTurnMenu();
                                     }
                                 }

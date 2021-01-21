@@ -51,7 +51,7 @@ public class MainMenu extends FXGLMenu {
 
         };
 
-        FXGL.getSettings().setGlobalSoundVolume(50);
+        /*FXGL.getSettings().setGlobalSoundVolume(50);*/
 
 
 
@@ -60,7 +60,7 @@ public class MainMenu extends FXGLMenu {
         Slider volume = new Slider(0.0, 1.0, 1.0);
         volume.valueProperty().bindBidirectional(FXGL.getSettings().globalMusicVolumeProperty());
         Slider sound = new Slider(0.0, 1.0, 1.0);
-        volume.valueProperty().bindBidirectional(FXGL.getSettings().globalSoundVolumeProperty());
+        sound.valueProperty().bindBidirectional(FXGL.getSettings().globalSoundVolumeProperty());
 
         var textMusic =  FXGL.getUIFactoryService().newText(FXGL.localizedStringProperty("menu.music.volume").concat(": "));
         var percentMusic = FXGL.getUIFactoryService().newText("");
