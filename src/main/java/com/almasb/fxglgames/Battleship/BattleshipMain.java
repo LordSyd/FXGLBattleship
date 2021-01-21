@@ -113,9 +113,15 @@ public class BattleshipMain extends GameApplication {
 
         //Spawn  hitBoard player 1
         spawnHitBoard(1);
+        System.out.println("spawned");
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
+    }
+
+    @Override
+    protected void onPreInit() {
+        initializeVariables();
     }
 
     private static void buildBackground() {
@@ -275,6 +281,8 @@ public class BattleshipMain extends GameApplication {
      * @param player
      */
     private static void spawnShipBoard(int player){
+        TileFactory.player1shipTiles.clear();
+        TileFactory.player2shipTiles.clear();
 
 
         int startX = 0;
