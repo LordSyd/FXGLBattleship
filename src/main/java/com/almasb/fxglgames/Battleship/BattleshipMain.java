@@ -37,7 +37,15 @@ public class BattleshipMain extends GameApplication {
     static private boolean player1Turn = true;
     static protected boolean betweenTurnMenuActive = false;
     static protected boolean GameOverMenuActive = false;
+    static protected boolean AIActive = false;
 
+    public static boolean isAIActive() {
+        return AIActive;
+    }
+
+    public static void setAIActive(boolean AIActive) {
+        BattleshipMain.AIActive = AIActive;
+    }
 
     private int deadPlayer = 0;
 
@@ -59,7 +67,7 @@ public class BattleshipMain extends GameApplication {
         settings.setMainMenuEnabled(true);
 
 
-       /* settings.setSceneFactory(new SceneFactory()
+        settings.setSceneFactory(new SceneFactory()
 
         {
             @NotNull
@@ -67,7 +75,7 @@ public class BattleshipMain extends GameApplication {
             public FXGLMenu newMainMenu() {
                 return new MainMenu();
             }
-        });*/
+        });
 
 
         settings.setTitle("Battleship");
