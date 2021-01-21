@@ -232,8 +232,7 @@ public class BattleshipMain extends GameApplication {
      * removes all spawned entities and checks turn boolean for which scene to push
      */
     static protected void showTurnMenu(){
-
-
+        ClickBehaviourComponent.canClick = true;
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
