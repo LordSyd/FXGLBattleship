@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *This class saves the state of the board by using two dimensional arrays. It also handles writing into and retrieving
- * from cells with setter and getter, as well as checking for neighbours of cells (it is not allowed to place in neighbor cells) and checking if a given point is within the gameboard
+ * from cells with setter and getter, as well as checking for neighbours of cells and checking if a given point is within the gameboard.
  */
 
 public class BoardState {
@@ -32,7 +32,7 @@ public class BoardState {
                 new Point2D(x, y + 1)
         };
 
-        List<Integer> neighbors = new ArrayList<>();
+        List<Integer> neighbors = new ArrayList<Integer>();
 
         for (Point2D p : points) {
             if (isValidPoint(p)) {
@@ -51,8 +51,11 @@ public class BoardState {
 
     }
 
-    public boolean isValidPoint(Point2D point) { return isValidPoint(point.getX(), point.getY()); }
+    public boolean isValidPoint(Point2D point) {
+        return isValidPoint(point.getX(), point.getY());
+    }
 
-    public boolean isValidPoint(double x, double y) { return x >= 0 && x < 10 && y >= 0 && y < 10; }
-
+    public boolean isValidPoint(double x, double y) {
+        return x >= 0 && x < 10 && y >= 0 && y < 10;
+    }
 }
