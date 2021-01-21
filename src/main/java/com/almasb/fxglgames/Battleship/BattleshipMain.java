@@ -73,6 +73,8 @@ public class BattleshipMain extends GameApplication {
 
         settings.setMainMenuEnabled(true);
 
+        settings.setAppIcon("icon.png");
+
 
         settings.setSceneFactory(new SceneFactory()
 
@@ -107,6 +109,8 @@ public class BattleshipMain extends GameApplication {
 
         Music mainSong = FXGL.getAssetLoader().loadMusic("Plasma_Connection.wav");
         FXGL.getAudioPlayer().loopMusic(mainSong);
+
+
 
         getGameWorld().addEntityFactory(new TileFactory());
         getGameWorld().addEntityFactory(new ShipFactory());
