@@ -56,7 +56,7 @@ public class BattleshipMain extends GameApplication {
         settings.setMainMenuEnabled(true);
 
 
-        /*settings.setSceneFactory(new SceneFactory()
+       /* settings.setSceneFactory(new SceneFactory()
 
         {
             @NotNull

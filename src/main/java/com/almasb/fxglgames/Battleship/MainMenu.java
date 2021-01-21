@@ -16,7 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * Not fully functioning at the moment, game uses default menu as of now. Problem with fireNewGame() method
+ * Not fully functioning at the moment, game uses default menu as of now.
  */
 
 public class MainMenu extends FXGLMenu {

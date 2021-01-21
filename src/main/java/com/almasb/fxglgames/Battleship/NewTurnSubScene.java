@@ -32,8 +32,10 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
                 case 2 -> nextPlayerText = "Player Two - Place your ships ";
             }
         }else{
-            //Todo implement correct text
-
+            switch (nextPlayerID){
+                case 1 -> nextPlayerText = "Player One - it´s your turn";
+                case 2 -> nextPlayerText = "Player Two - it´s your turn";
+            }
         }
 
         text = getUIFactoryService().newText(nextPlayerText , Color.GOLD, 30);
