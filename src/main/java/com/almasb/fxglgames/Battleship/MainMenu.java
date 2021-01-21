@@ -1,8 +1,8 @@
 package com.almasb.fxglgames.Battleship;
 
 
-import com.almasb.fxgl.app.scene.FXGLDefaultMenu;
 import com.almasb.fxgl.app.scene.FXGLMenu;
+import com.almasb.fxgl.audio.Music;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
@@ -27,6 +27,9 @@ public class MainMenu extends FXGLMenu {
     public MainMenu() {
         super(MenuType.MAIN_MENU);
 
+        Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
+        FXGL.getAudioPlayer().loopMusic(menuSong);
+
         Runnable testAction = this::fireNewGame;
 
         var againstAI =  createActionButton("Against AI", testAction);
@@ -34,10 +37,18 @@ public class MainMenu extends FXGLMenu {
 
 
 
-        EventHandler<ActionEvent> event = e -> testAction.run();
-        EventHandler<ActionEvent> AIEvent = e -> {
-            BattleshipMain.setAIActive(true);
+        EventHandler<ActionEvent> event = e -> {
+            FXGL.getAudioPlayer().stopAllMusic();
             testAction.run();
+
+        };
+        EventHandler<ActionEvent> AIEvent = e -> {
+            FXGL.getAudioPlayer().stopAllMusic();
+
+            BattleshipMain.setAIActive(true);
+            System.out.println(BattleshipMain.isAIActive());
+            testAction.run();
+
 
         };
 

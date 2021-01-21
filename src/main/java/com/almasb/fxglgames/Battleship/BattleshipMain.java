@@ -64,6 +64,7 @@ public class BattleshipMain extends GameApplication {
     @Override
     protected void initSettings(GameSettings settings) {
 
+
         settings.setMainMenuEnabled(true);
 
 
