@@ -51,11 +51,7 @@ public class MainMenu extends FXGLMenu {
 
         };
 
-        /*FXGL.getSettings().setGlobalSoundVolume(50);*/
-
-
-
-
+        FXGL.getSettings().setGlobalMusicVolume(0.25);
 
         Slider volume = new Slider(0.0, 1.0, 1.0);
         volume.valueProperty().bindBidirectional(FXGL.getSettings().globalMusicVolumeProperty());
@@ -71,7 +67,7 @@ public class MainMenu extends FXGLMenu {
         percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
 
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
-        hBoxMusic.setTranslateX(100);
+        hBoxMusic.setTranslateX(104);
         hBoxMusic.setTranslateY(450);
 
         HBox hBoxSound = new HBox(15, textSound, sound, percentSound );
