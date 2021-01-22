@@ -25,6 +25,10 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class TileFactory implements EntityFactory {
 
+    public enum Type {
+        TILE
+    }
+
     /**
      * These arrays get filled with tiles on spawn, used to iterate over them on click to show change of state on screen
      * by changing the tile's color. Uses 4 array lists to make check logic inside getBoardState() less complicated
@@ -150,6 +154,7 @@ public class TileFactory implements EntityFactory {
                 .bbox(new HitBox(BoundingShape.box(30,30)))
                 .with(original)
                 .with(new ClickBehaviourComponent())
+                .type(Type.TILE)
                 .build();
 
         tile.getViewComponent().addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

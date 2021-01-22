@@ -23,6 +23,10 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class ShipFactory implements EntityFactory {
 
+    public enum Type {
+        SHIP
+    }
+
     private static String nextShipSprite;
 
 
@@ -80,7 +84,9 @@ public class ShipFactory implements EntityFactory {
         var ship = FXGL.entityBuilder(data)
 
                 .view(nextShipSprite)
+                .type(Type.SHIP)
                 .build();
+
 
         return ship;
     }

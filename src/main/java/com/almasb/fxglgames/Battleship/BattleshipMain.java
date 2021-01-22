@@ -7,19 +7,14 @@ import com.almasb.fxgl.app.scene.SceneFactory;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 
 
-import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
 //todo fix placement of boards
@@ -46,15 +41,19 @@ public class BattleshipMain extends GameApplication {
     static protected boolean betweenTurnMenuActive;
     static protected boolean GameOverMenuActive;
     static protected boolean AIActive;
+    static boolean AITurn;
+    static protected AI ai;
 
-
+    public static void setAIActive(boolean AIActive) {
+        BattleshipMain.AIActive = AIActive;
+    }
 
     public static boolean isAIActive() {
         return AIActive;
     }
 
-    public static void setAIActive(boolean AIActive) {
-        BattleshipMain.AIActive = AIActive;
+    public static void setAITurn(boolean turn) {
+        BattleshipMain.AITurn = turn;
     }
 
     private int deadPlayer = 0;
@@ -108,13 +107,8 @@ public class BattleshipMain extends GameApplication {
 
         buildBackground();
 
-
-
-
         Music mainSong = FXGL.getAssetLoader().loadMusic("Plasma_Connection.wav");
         FXGL.getAudioPlayer().loopMusic(mainSong);
-
-
 
         getGameWorld().addEntityFactory(new TileFactory());
         getGameWorld().addEntityFactory(new ShipFactory());
@@ -150,7 +144,8 @@ public class BattleshipMain extends GameApplication {
         player1Turn = true;
         betweenTurnMenuActive = false;
         GameOverMenuActive = false;
-        AIActive = false;
+        ai = new AI();
+
     }
 
     /**
@@ -161,14 +156,50 @@ public class BattleshipMain extends GameApplication {
 
     @Override
     protected void onUpdate(double tpf) {
+        if(isAIActive()) {
+            if (gameRunning) {
+                showTurnNotification("AI placement done\nGame Started");
+            }
+        }
+
+        if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0) {
+            gameRunning = true;
+        }
 
         deadPlayer = checkPlayerDead();
 
-        if (deadPlayer != 0){
+        if (deadPlayer != 0) {
             GameOverMenuActive = true;
             showGameOverMenu();
             System.out.println("activated");
         }
+
+
+
+
+
+    }
+
+    private void showTurnNotification(String turn) {
+
+        var bg = new Rectangle(150, 100, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.30));
+        bg.setArcWidth(50);
+        bg.setArcHeight(50);
+        bg.setStroke(Color.WHITE);
+        bg.setStrokeWidth(10);
+
+
+        Text testText = FXGL.getUIFactoryService().newText(
+                turn,
+                Color.BLACK, 18);
+        testText.setTextAlignment(TextAlignment.LEFT);
+
+
+        var stackPane2 = new StackPane(bg, testText);
+        stackPane2.setTranslateX(400);
+        stackPane2.setTranslateY(70);
+
+        addUINode(stackPane2);
     }
 
     /**
@@ -197,8 +228,6 @@ public class BattleshipMain extends GameApplication {
         bg.setStrokeWidth(10);
 
 
-
-
         Text testText = FXGL.getUIFactoryService().newText(
                 "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
                         "--> Right Click: \n      Horizontal placing\n" +
@@ -223,34 +252,34 @@ public class BattleshipMain extends GameApplication {
      * Some methods in here are only for future proofing and not in use at the moment
      */
 
-    static protected void showStartMenu(){
-        getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
-        getSceneService().pushSubScene(new StartMenuSubScene());
-    }
+
 
     /**
      * removes all spawned entities and checks turn boolean for which scene to push
      * starts game when all ships are place by both players
      */
     static protected void showTurnMenu(){
-        ClickBehaviourComponent.canClick = true;
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
 
-        if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0){
+    /*    if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0){
 
             gameRunning = true;
-        }
+        }*/
+
 
         if (player1Turn){
-            getSceneService().pushSubScene(new NewTurnSubScene(1, gameRunning));
-        }else{
+            setPlayer1Turn(false);
             getSceneService().pushSubScene(new NewTurnSubScene(2, gameRunning));
+        }else{
+            setPlayer1Turn(true);
+            getSceneService().pushSubScene(new NewTurnSubScene(1, gameRunning));
         }
     }
 
     protected void showGameOverMenu(){
+        setAIActive(false);
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
@@ -278,8 +307,34 @@ public class BattleshipMain extends GameApplication {
         TileFactory.player2hitTiles.clear();
     }
 
+    /**
+     * starts ai turns depending on game State and sets player active
+     */
+
+    static protected void startAITurn(){
+        setPlayer1Turn(false);
+        setAITurn(true);
+
+        if(AIActive && !player1Turn){
+            if (gameRunning){
+            ai.moveAndWait();
+            System.out.println("AImove");
+            }else{
+                System.out.println("AIplace");
+                ai.placeAndWait();
+                System.out.println("AIplacedone");
+            }
+        }
+
+        setPlayer1Turn(true);
+         setAITurn(false);
+    }
+
+    /**
+     * closes between turn menu and spawns boards again
+     */
+
     static protected void closeTurnMenu(){
-        betweenTurnMenuActive = false;
         clearTileArrays();
 
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
@@ -296,15 +351,9 @@ public class BattleshipMain extends GameApplication {
         buildBackground();
 
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
-    }
+        ClickBehaviourComponent.canClick = true;
 
 
-    static protected void closeStartMenu(){
-        getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
-        getSceneService().popSubScene();
-
-        spawnHitBoard(1);
-        spawnShipBoard(1);
     }
 
 

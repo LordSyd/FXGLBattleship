@@ -3,6 +3,7 @@ package com.almasb.fxglgames.Battleship;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.audio.Sound;
 import com.almasb.fxgl.dsl.FXGL;
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
 import javafx.util.Duration;
 
@@ -26,8 +27,14 @@ public class ClickBehaviourComponent extends Component{
 
         canClick = false;
 
+        if (!BattleshipMain.isAIActive()) {
+
         Runnable showTurnMenu = BattleshipMain::showTurnMenu;
         FXGL.getGameTimer().runOnceAfter(showTurnMenu, Duration.millis(700));
+        }else{
+            Runnable startAITurn = BattleshipMain::startAITurn;
+            FXGL.getGameTimer().runOnceAfter(startAITurn, Duration.millis(200));
+        }
 
     }
 
@@ -40,8 +47,6 @@ public class ClickBehaviourComponent extends Component{
             primary = false;
             onPrimaryClick();
         }
-
-
 
     }
 
@@ -56,21 +61,21 @@ public class ClickBehaviourComponent extends Component{
 
 
     public void onPrimaryClick() {
+        System.out.println(canClick);
         if (canClick) {
 
-
             if (BattleshipMain.isPlayer1Turn()) {
+                getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
                 ShipFactory.updateShipSpawns(BattleshipMain.player1);
             } else {
+                getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
                 ShipFactory.updateShipSpawns(BattleshipMain.player2);
             }
 
             int playerId = entity.getProperties().getValue("Player");
             String tileType = entity.getProperties().getValue("boardType");
 
-
             switch (tileType) {
-
                 case "ship" -> {
                     if (!BattleshipMain.isGameRunning()) {
                         switch (playerId) {
@@ -81,16 +86,18 @@ public class ClickBehaviourComponent extends Component{
                                                     primary,
                                                     entity.getX(),
                                                     entity.getY()),
-                                            entity.getProperties().getValue("x"), entity.getProperties().getValue("y"))) {
+                                            entity.getProperties().getValue("x"), entity.getProperties().getValue("y")))
+                                        getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);{
                                         ShipFactory.updateShipSpawns(BattleshipMain.player1);
                                         TileFactory.getBoardStateColors(tileType, 1);
 
 
                                         if (--BattleshipMain.player1ShipsToPlace == 0) {
 
-                                            BattleshipMain.setPlayer1Turn(false);
-                                            waitAfterTurn();
+                                            canClick = false;
 
+
+                                            waitAfterTurn();
                                         }
                                     }
                                 }
@@ -102,19 +109,17 @@ public class ClickBehaviourComponent extends Component{
                                                 primary,
                                                 entity.getX(),
                                                 entity.getY()
-
                                         ),
                                         entity.getProperties().getValue("x"), entity.getProperties().getValue("y"))
                                 ) {
+                                    getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
                                     ShipFactory.updateShipSpawns(BattleshipMain.player2);
 
 
                                     TileFactory.getBoardStateColors(tileType, 2);
 
                                     if (--BattleshipMain.player2ShipsToPlace == 0) {
-
-                                        BattleshipMain.setPlayer1Turn(true);
-
+                                        canClick = false;
                                         waitAfterTurn();
                                     }
                                 }
@@ -128,23 +133,24 @@ public class ClickBehaviourComponent extends Component{
                         switch (playerId) {
                             case 1 -> {
                                 TileFactory.updateBoardState();
-                                if (BattleshipMain.betweenTurnMenuActive =
-                                        BattleshipMain.player2.shoot(
+                                if (BattleshipMain.player2.shoot(
                                                 entity.getProperties().getValue("x"),
-                                                entity.getProperties().getValue("y"))) {
-                                    BattleshipMain.setPlayer1Turn(false);
+                                                entity.getProperties().getValue("y")))
+                                {
+                                    canClick = false;
                                     waitAfterTurn();
+                                    System.out.println(canClick);
                                 }
                             }
 
                             case 2 -> {
                                 TileFactory.getBoardStateColors(tileType, 2);
 
-                                if (BattleshipMain.betweenTurnMenuActive =
-                                        BattleshipMain.player1.shoot(
+                                if (BattleshipMain.player1.shoot(
                                                 entity.getProperties().getValue("x"),
-                                                entity.getProperties().getValue("y"))) {
-                                    BattleshipMain.setPlayer1Turn(true);
+                                                entity.getProperties().getValue("y")))
+                                {
+                                    canClick = false;
                                     waitAfterTurn();
                                 }
                             }

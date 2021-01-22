@@ -18,7 +18,7 @@ public class Player {
     public ArrayList<Ship> shipInstances = new ArrayList<>();
 
 
-    private int health = /*5+4+3+*/2+1; //numbers of tiles per ship type
+    private int health = 5+4+3+2+1; //numbers of tiles per ship type
 
     public Player() {
     }
@@ -58,9 +58,10 @@ public class Player {
             return false;
         }else{
             if (ships.getStateOfCell(x,y) == 1){
+                hit();
                 shots.setStateOfCell(x,y, 2);
                 ships.setStateOfCell(x,y, 2);
-                hit();
+
                 return false;
             }else{
                 shots.setStateOfCell(x,y, 1);

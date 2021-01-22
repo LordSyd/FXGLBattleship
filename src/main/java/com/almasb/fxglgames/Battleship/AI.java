@@ -1,34 +1,100 @@
 package com.almasb.fxglgames.Battleship;
 
+import com.almasb.fxgl.dsl.FXGL;
+import javafx.util.Duration;
+
 import java.util.Random;
 
-//TODO --GewinnBedingung damit AI nicht endlos weiterschießt (Sieges Screen)? --Speichern der Schüsse der AI notwendig für extern oder speichert hitMethod Schüsse ab?
+import static com.almasb.fxglgames.Battleship.BattleshipMain.setAITurn;
+import static com.almasb.fxglgames.Battleship.BattleshipMain.setPlayer1Turn;
 
 
 public class AI {
 
 
-    public void EasyAI ()
-    {
+    public AI() {
+    }
 
-        Random randomGenerator=new Random();
+    /**
+     * wait-methods, for giving the player visual feedback
+     */
+    protected void moveAndWait(){
+        Runnable move = AI::easyAIMove;
+        FXGL.getGameTimer().runOnceAfter(move, Duration.millis(300));
+    }
 
-        boolean shootAt;
+    protected void placeAndWait(){
+        Runnable move = AI::AIPlaceShip;
+        FXGL.getGameTimer().runOnceAfter(move, Duration.millis(500));
 
-        int SchussX = randomGenerator.nextInt(10) + 1; // Ausgabe der Werte im Bereich 1-10
-        int SchussY = randomGenerator.nextInt(10) + 1;
+    }
 
+    /**
+     * method for ai ship placement, tries to place ship by generating orientation and location at random
+     */
+
+     private static void AIPlaceShip(){
+        boolean validPlacement;
+
+        Random randomGenerator = new Random();
+
+        int tryPlacementX;
+        int tryPlacementY;
+        boolean tryOrientation;
+        Ship shipToPlace;
 
         do {
-            shootAt = BattleshipMain.player1.shoot(SchussY, SchussX);
+             tryPlacementX = randomGenerator.nextInt(10);
+             tryPlacementY = randomGenerator.nextInt(10);
+             tryOrientation = randomGenerator.nextBoolean();
+             shipToPlace = new Ship(
+                     BattleshipMain.player2ShipsToPlace,
+                     tryOrientation,
+                     tryPlacementX,
+                     tryPlacementY);
 
-            SchussX = randomGenerator.nextInt(10) + 1;
-            SchussY = randomGenerator.nextInt(10) + 1;
+             validPlacement = BattleshipMain.player2.placeShip(shipToPlace, tryPlacementX, tryPlacementY);
+             if (validPlacement){
+                 BattleshipMain.player2ShipsToPlace--;
+             }
 
-        }
-            while (!shootAt);
+        }while(BattleshipMain.player2ShipsToPlace != 0);
+         ClickBehaviourComponent.canClick = true;
+    }
+
+    /**
+     * logic governing ai shots, takes random guess
+     */
 
 
+    private static void easyAIMove() {
+
+        Random randomGenerator = new Random();
+
+        int shotX;
+        int shotY;
+
+        boolean isDone = false;
+
+        do{
+
+
+            shotX = randomGenerator.nextInt(10);
+            shotY = randomGenerator.nextInt(10);
+
+            isDone = BattleshipMain.player1.shoot(shotX, shotY);
+            System.out.println("ai shot success");
+            if (!BattleshipMain.player1.isDead()){
+
+                TileFactory.updateBoardState();}
+        }while(!isDone);
+        ClickBehaviourComponent.canClick = true;
+    }
+
+
+    /**
+     * placeholder methods, not working
+     */
 /*
         public void placeShipAI ()
         {
@@ -62,7 +128,7 @@ public class AI {
 */
 
 
-    }
+
 
 
 
