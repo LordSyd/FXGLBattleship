@@ -137,7 +137,7 @@ public class BattleshipMain extends GameApplication {
                 .view("ocean_animated.gif")
                 .at(0,0)
                 .zIndex(-500)
-                .scale(3.2,3.2)
+                .scale(3,4)
                 .buildAndAttach();
     }
 
