@@ -75,6 +75,9 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
         button.setOnAction(this);
         button.setTranslateX(500);
         button.setTranslateY(400);
+        button.setScaleX(1.5);
+        button.setScaleY(1.5);
+
 
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().add(stackPane);

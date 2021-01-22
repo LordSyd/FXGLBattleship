@@ -60,6 +60,9 @@ public class GameOverScreen  extends SubScene implements EventHandler<ActionEven
         restart.setOnAction(this);
         restart.setTranslateX(500);
         restart.setTranslateY(400);
+        restart.setScaleX(1.5);
+        restart.setScaleY(1.5);
+
 
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().addAll(stackPane, restart);
