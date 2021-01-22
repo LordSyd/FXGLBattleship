@@ -204,7 +204,7 @@ public class BattleshipMain extends GameApplication {
 
 
 
-       
+
         Text instructions = FXGL.getUIFactoryService().newText(
                 "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
                         "--> Right Click: \n      Horizontal placing\n" +

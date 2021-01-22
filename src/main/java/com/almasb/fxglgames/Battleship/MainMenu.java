@@ -26,11 +26,7 @@ import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxgl.dsl.FXGL.getAppWidth;
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 
-
-import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 /**
  * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
@@ -116,6 +112,7 @@ public class MainMenu extends FXGLMenu {
     @Override
     public void onCreate() {
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
+        FXGL.getAudioPlayer().stopAllMusic();
         FXGL.getAudioPlayer().loopMusic(menuSong);
 
     }
