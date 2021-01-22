@@ -210,6 +210,8 @@ public class BattleshipMain extends GameApplication {
                         "shooting\n" +
                         "--> Bottom Board:\n" +
                         " place ships\n" +
+                        "\n\n" +
+                        "Press escape \nto bring up menu" +
                         "\n\n\n" +
                         "         HAVE FUN!!!",
                         Color.BLACK, 18);
