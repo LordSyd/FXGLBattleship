@@ -28,7 +28,6 @@ public class AI {
         }
             while (!shootAt);
 
-
 /*
         public void placeShipAI ()
         {

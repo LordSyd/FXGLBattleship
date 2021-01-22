@@ -137,7 +137,7 @@ public class BattleshipMain extends GameApplication {
                 .view("ocean_animated.gif")
                 .at(0,0)
                 .zIndex(-500)
-                .scale(3,4)
+                .scale(3.2,3.2)
                 .buildAndAttach();
     }
 
@@ -190,25 +190,24 @@ public class BattleshipMain extends GameApplication {
      */
     @Override
     protected void initUI() {
-        var bg = new Rectangle(200, 450, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.85));
+        var bg = new Rectangle(200, 450, Color.color(0.102014f, 0.510800f, 0.8038743f, 0.80));
         bg.setArcWidth(50);
         bg.setArcHeight(50);
-        bg.setStroke(Color.WHITE);
+        bg.setStroke(Color.DARKGRAY);
         bg.setStrokeWidth(10);
 
 
 
 
         Text testText = FXGL.getUIFactoryService().newText(
-                "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
-                        "--> Right Click: \n      Horizontal placing\n" +
+                "       CONTROLS\n\n\n- Left Mouse Click \n vertical placing\n\n" +
+                        "- Right Mouse Click \n horizontal placing\n" +
                         "\n\n" +
-                        "--> Top Board:\n " +
-                        "shooting\n" +
-                        "--> Bottom Board:\n" +
+                        "- Top Board\n " +
+                        "shooting\n\n" +
+                        "- Bottom Board\n" +
                         " place ships\n" +
-                        "\n\n\n" +
-                        "         HAVE FUN!!!",
+                        "\n" ,
                         Color.BLACK, 18);
         testText.setTextAlignment(TextAlignment.LEFT);
 

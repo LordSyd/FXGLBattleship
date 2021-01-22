@@ -3,6 +3,7 @@ package com.almasb.fxglgames.Battleship;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.audio.Music;
+import com.almasb.fxgl.entity.Entity;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
@@ -18,11 +19,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
+
 /**
  * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
  * */
 
 public class MainMenu extends FXGLMenu {
+
 
     public MainMenu() {
         super(MenuType.MAIN_MENU);
@@ -67,26 +71,26 @@ public class MainMenu extends FXGLMenu {
         percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
 
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
-        hBoxMusic.setTranslateX(104);
+        hBoxMusic.setTranslateX(424);
         hBoxMusic.setTranslateY(450);
 
         HBox hBoxSound = new HBox(15, textSound, sound, percentSound );
-        hBoxSound.setTranslateX(100);
+        hBoxSound.setTranslateX(420);
         hBoxSound.setTranslateY(500);
 
 
 
         againstAI.setOnAction(AIEvent);
-        againstAI.setTranslateX(400);
+        againstAI.setTranslateX(650);
         againstAI.setTranslateY(300);
         againstAI.setScaleX(2);
-        againstAI.setScaleY(1.5);
+        againstAI.setScaleY(2);
 
         twoPlayer.setOnAction(event);
-        twoPlayer.setTranslateX(200);
+        twoPlayer.setTranslateX(450);
         twoPlayer.setTranslateY(300);
         twoPlayer.setScaleX(2);
-        twoPlayer.setScaleY(1.5);
+        twoPlayer.setScaleY(2);
 
 
 
@@ -100,6 +104,7 @@ public class MainMenu extends FXGLMenu {
     public void onCreate() {
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
         FXGL.getAudioPlayer().loopMusic(menuSong);
+
 
     }
 
@@ -116,7 +121,7 @@ public class MainMenu extends FXGLMenu {
 
     @Override
     protected Node createBackground(double width, double height) {
-        return new Rectangle(width, height, Color.GRAY);
+        return new Rectangle(width, height, Color.DARKGRAY);
     }
 
     @Override
