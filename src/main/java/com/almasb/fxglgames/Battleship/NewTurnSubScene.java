@@ -1,9 +1,12 @@
 package com.almasb.fxglgames.Battleship;
 
+import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.SubScene;
 import com.almasb.fxgl.ui.FXGLButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -23,41 +26,61 @@ import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
 
 public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEvent> {
 
+    public static void buildBackground() {
+        Entity background = entityBuilder()
+                .view("yourturn.png")
+                .at(0,0)
+                .zIndex(-500)
+                .scale(1,1)
+                .buildAndAttach();
+    }
+
+
+
 
     public NewTurnSubScene(int nextPlayerID, boolean gameRunning) {
 
+        buildBackground();
+
 
         String nextPlayerText = "I should not appear";
-        var text = getUIFactoryService().newText(nextPlayerText, Color.GOLD, 32);
+        var text = getUIFactoryService().newText(nextPlayerText, Color.SILVER, 32);
 
         if (!gameRunning) {
 
             switch (nextPlayerID) {
-                case 1 -> nextPlayerText = "Player One - Place your ships";
-                case 2 -> nextPlayerText = "Player Two - Place your ships";
+                case 1 -> nextPlayerText = "Player One - Place your ships!";
+                case 2 -> nextPlayerText = "Player Two - Place your ships!";
             }
         }else{
                 switch (nextPlayerID){
-                    case 1 -> nextPlayerText = "Player One - it´s your turn";
-                    case 2 -> nextPlayerText = "Player Two - it´s your turn";
+                    case 1 -> nextPlayerText = "Player One - It´s your turn!";
+                    case 2 -> nextPlayerText = "Player Two - It´s your turn!";
                 }
             }
 
 
-        text = getUIFactoryService().newText(nextPlayerText , Color.GOLD, 30);
+        text = getUIFactoryService().newText(nextPlayerText , Color.BLACK, 30);
 
         text.setTextAlignment(TextAlignment.CENTER);
+        text.setTranslateX(370);
+        text.setTranslateY(150);
 
-        var bg = new Rectangle(600, 230, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.55));
+        var bg = new Rectangle(450, 100, Color.color(0.102014f, 0.510800f, 0.8038743f, 0.80));
         bg.setArcWidth(50);
         bg.setArcHeight(50);
-        bg.setStroke(Color.WHITE);
+        bg.setStroke(Color.DARKGRAY);
         bg.setStrokeWidth(10);
+        bg.setTranslateX(370);
+        bg.setTranslateY(150);
 
         var button = new FXGLButton("READY");
         button.setOnAction(this);
-        button.setTranslateX(100);
+        button.setTranslateX(500);
         button.setTranslateY(400);
+        button.setScaleX(1.5);
+        button.setScaleY(1.5);
+
 
         var stackPane = new StackPane(bg, text);
         getContentRoot().getChildren().add(stackPane);

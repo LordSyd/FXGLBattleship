@@ -3,6 +3,9 @@ package com.almasb.fxglgames.Battleship;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.audio.Music;
+import com.almasb.fxgl.entity.Entity;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
@@ -14,12 +17,20 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 
+
+import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGL.getAppWidth;
+import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
+
+
+import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 /**
  * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
@@ -67,26 +78,38 @@ public class MainMenu extends FXGLMenu {
         percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
 
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
-        hBoxMusic.setTranslateX(104);
+        hBoxMusic.setTranslateX(424);
         hBoxMusic.setTranslateY(450);
 
         HBox hBoxSound = new HBox(15, textSound, sound, percentSound );
-        hBoxSound.setTranslateX(100);
+        hBoxSound.setTranslateX(420);
         hBoxSound.setTranslateY(500);
 
         againstAI.setOnAction(AIEvent);
-        againstAI.setTranslateX(400);
+        againstAI.setTranslateX(650);
         againstAI.setTranslateY(300);
         againstAI.setScaleX(2);
-        againstAI.setScaleY(1.5);
+        againstAI.setScaleY(2);
 
         twoPlayer.setOnAction(event);
-        twoPlayer.setTranslateX(200);
+        twoPlayer.setTranslateX(450);
         twoPlayer.setTranslateY(300);
         twoPlayer.setScaleX(2);
-        twoPlayer.setScaleY(1.5);
+        twoPlayer.setScaleY(2);
 
-        getContentRoot().getChildren().addAll(againstAI, twoPlayer, hBoxMusic, hBoxSound);
+
+
+        Image image = getAssetLoader().loadImage("mainscreen.png");
+
+        ImageView bg = new ImageView(image);
+
+        bg.setFitHeight(getAppHeight());
+        bg.setFitWidth(getAppWidth());
+
+        StackPane background = new StackPane(bg);
+        getContentRoot().getChildren().addAll(background, againstAI, twoPlayer, hBoxMusic, hBoxSound);
+
+
     }
 
 
@@ -110,7 +133,7 @@ public class MainMenu extends FXGLMenu {
 
     @Override
     protected Node createBackground(double width, double height) {
-        return new Rectangle(width, height, Color.GRAY);
+        return new Rectangle(width, height, Color.DARKGRAY);
     }
 
     @Override
