@@ -52,10 +52,11 @@ public class ClickBehaviourComponent extends Component{
 
 
     /**
-     * Same as it was in Tilefactory, just has a boolean instead of a check for a mouse button
+     *"Main logic" governing the game boards. Has different switch cases and boolean checks to get correct
+     *behaviour depending on game state. also has a boolean to lock out clicking on boards when this should be
+     *prevented.
      *
-     * The first switch case ship controls the placement of the ships of player 1 and player 2.
-     * After the ships are places the next switch case hit allows players to shoot on the board.
+     *Sold my soul to the devil to debug this, don't ask any questions - you are better of not knowing
      */
 
 
