@@ -36,7 +36,11 @@ public class Player {
     }
 
     /**
-     * shoots at this players ships, called by other player. For future reference:
+     * shoots at this players ships, called by other player. Returns false if turn is not over, true if nothing was hit
+     * -> turn is over
+     *
+     *
+     * For future reference:
      *
      * ship Board:
      * 1: Ship is there
@@ -73,6 +77,17 @@ public class Player {
 
     }
 
+    /**
+     * Method to try placing ships, takes a ship instance that provides length and orientation of ship and coordinates
+     *
+     * returns true if placement was successful
+     *
+     * @param ship
+     * @param x
+     * @param y
+     * @return
+     */
+
     public boolean placeShip(Ship ship, int x, int y) {
         if (canPlaceShip(ship, x, y)) {
             this.shipInstances.add(ship);
@@ -81,8 +96,6 @@ public class Player {
             if (ship.isVertical()) {
                 for (int i = y; i < y + length; i++) {
                     ships.setStateOfCell(x, i, 1);
-
-
                 }
             }
             else {
@@ -90,10 +103,8 @@ public class Player {
                     ships.setStateOfCell(i, y, 1);
                 }
             }
-
             return true;
         }
-
         return false;
 
     }

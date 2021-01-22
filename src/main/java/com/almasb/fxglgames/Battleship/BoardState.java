@@ -1,7 +1,6 @@
 package com.almasb.fxglgames.Battleship;
 
 import javafx.geometry.Point2D;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

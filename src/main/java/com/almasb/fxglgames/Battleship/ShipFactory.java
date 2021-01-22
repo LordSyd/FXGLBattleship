@@ -29,6 +29,13 @@ public class ShipFactory implements EntityFactory {
 
     private static String nextShipSprite;
 
+    /**
+     * resolves a given ship type given by its length/typefield and its orientation to a sprite saved on disk
+     *
+     * @param type
+     * @param vertical
+     * @return
+     */
 
     private static String spriteResolver(int type, boolean vertical){
         String sprite = null;
@@ -54,6 +61,11 @@ public class ShipFactory implements EntityFactory {
         return sprite;
     }
 
+    /**
+     * spawns ships
+     * @param player
+     */
+
     public static void updateShipSpawns(Player player) {
         Ship ship;
         ArrayList<Ship> shipsList = player.getShipInstances();
@@ -65,7 +77,6 @@ public class ShipFactory implements EntityFactory {
                 ship = iterator.next();
                 nextShipSprite = spriteResolver(ship.getType(), ship.isVertical());
                 spawn("ship", ship.getX(), ship.getY());
-
             }
         }
     }
@@ -82,12 +93,9 @@ public class ShipFactory implements EntityFactory {
 
 
         var ship = FXGL.entityBuilder(data)
-
                 .view(nextShipSprite)
                 .type(Type.SHIP)
                 .build();
-
-
         return ship;
     }
 }

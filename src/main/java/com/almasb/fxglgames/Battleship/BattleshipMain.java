@@ -14,10 +14,11 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 
-
-
 import static com.almasb.fxgl.dsl.FXGL.*;
-//todo fix placement of boards
+import static com.almasb.fxglgames.Battleship.TileFactory.*;
+import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
+
+
 
 public class BattleshipMain extends GameApplication {
 
@@ -44,41 +45,31 @@ public class BattleshipMain extends GameApplication {
     static boolean AITurn;
     static protected AI ai;
 
+    private int deadPlayer = 0;
+
     public static void setAIActive(boolean AIActive) {
         BattleshipMain.AIActive = AIActive;
     }
-
     public static boolean isAIActive() {
         return AIActive;
     }
-
     public static void setAITurn(boolean turn) {
         BattleshipMain.AITurn = turn;
     }
-
-    private int deadPlayer = 0;
-
     public static boolean isPlayer1Turn() {
         return player1Turn;
     }
-
     public static void setPlayer1Turn(boolean player1Turn) {
         BattleshipMain.player1Turn = player1Turn;
     }
-
     public static boolean isGameRunning() {
         return gameRunning;
     }
 
     @Override
     protected void initSettings(GameSettings settings) {
-
-
         settings.setMainMenuEnabled(true);
-
         settings.setAppIcon("icon.png");
-
-
         settings.setSceneFactory(new SceneFactory()
 
         {
@@ -88,14 +79,10 @@ public class BattleshipMain extends GameApplication {
                 return new MainMenu();
             }
         });
-
-
         settings.setTitle("Battleship");
         settings.setVersion("1.0");
         settings.setWidth(1200);
         settings.setHeight(800);
-
-
     }
 
     /**
@@ -145,56 +132,45 @@ public class BattleshipMain extends GameApplication {
         betweenTurnMenuActive = false;
         GameOverMenuActive = false;
         ai = new AI();
-
     }
 
     /**
-     * Called on update of frame. checks if player is dead
+     * Called on update of frame. checks if player is dead and if all ships are placed
      *
      * @param tpf double
      */
 
     @Override
     protected void onUpdate(double tpf) {
-        if(isAIActive()) {
-            if (gameRunning) {
-                showTurnNotification("AI placement done\nGame Started");
-            }
-        }
 
         if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0) {
             gameRunning = true;
         }
-
         deadPlayer = checkPlayerDead();
-
         if (deadPlayer != 0) {
             GameOverMenuActive = true;
             showGameOverMenu();
-            System.out.println("activated");
         }
-
-
-
-
 
     }
 
-    private void showTurnNotification(String turn) {
+    /**
+     * shows notification when playing against ai that it is the players turn
+     * @param turn String:what to show when player turn starts
+     */
 
-        var bg = new Rectangle(150, 100, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.30));
+    private static void showTurnNotification(String turn) {
+
+        var bg = new Rectangle(200, 120, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.50));
         bg.setArcWidth(50);
         bg.setArcHeight(50);
         bg.setStroke(Color.WHITE);
         bg.setStrokeWidth(10);
 
-
         Text testText = FXGL.getUIFactoryService().newText(
                 turn,
                 Color.BLACK, 18);
         testText.setTextAlignment(TextAlignment.LEFT);
-
-
         var stackPane2 = new StackPane(bg, testText);
         stackPane2.setTranslateX(400);
         stackPane2.setTranslateY(70);
@@ -216,9 +192,7 @@ public class BattleshipMain extends GameApplication {
         }
     }
 
-    /**
-     * not used at the moment, test code remains inside for the time being
-     */
+
     @Override
     protected void initUI() {
         var bg = new Rectangle(200, 450, Color.color(0.3627451f, 0.3627451f, 0.5627451f, 0.85));
@@ -228,7 +202,7 @@ public class BattleshipMain extends GameApplication {
         bg.setStrokeWidth(10);
 
 
-        Text testText = FXGL.getUIFactoryService().newText(
+        Text instructions = FXGL.getUIFactoryService().newText(
                 "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
                         "--> Right Click: \n      Horizontal placing\n" +
                         "\n\n" +
@@ -239,35 +213,21 @@ public class BattleshipMain extends GameApplication {
                         "\n\n\n" +
                         "         HAVE FUN!!!",
                         Color.BLACK, 18);
-        testText.setTextAlignment(TextAlignment.LEFT);
+        instructions.setTextAlignment(TextAlignment.LEFT);
 
-
-        var stackPane = new StackPane(bg, testText);
+        var stackPane = new StackPane(bg, instructions);
         stackPane.setTranslateX(950);
         stackPane.setTranslateY(70);
-
         addUINode(stackPane);
     }
-    /**
-     * Some methods in here are only for future proofing and not in use at the moment
-     */
-
 
 
     /**
      * removes all spawned entities and checks turn boolean for which scene to push
-     * starts game when all ships are place by both players
      */
     static protected void showTurnMenu(){
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(false) );
-
         getGameWorld().getEntitiesCopy().forEach(Entity::removeFromWorld);
-
-    /*    if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0){
-
-            gameRunning = true;
-        }*/
-
 
         if (player1Turn){
             setPlayer1Turn(false);
@@ -300,15 +260,14 @@ public class BattleshipMain extends GameApplication {
      * used to clear arraylists holding the tiles after each round
      */
     static protected void clearTileArrays(){
-
-        TileFactory.player1shipTiles.clear();
-        TileFactory.player2shipTiles.clear();
-        TileFactory.player1hitTiles.clear();
-        TileFactory.player2hitTiles.clear();
+        player1shipTiles.clear();
+        player2shipTiles.clear();
+        player1hitTiles.clear();
+        player2hitTiles.clear();
     }
 
     /**
-     * starts ai turns depending on game State and sets player active
+     * starts ai turns depending on game state and sets player active
      */
 
     static protected void startAITurn(){
@@ -317,17 +276,14 @@ public class BattleshipMain extends GameApplication {
 
         if(AIActive && !player1Turn){
             if (gameRunning){
-            ai.moveAndWait();
-            System.out.println("AImove");
+                ai.moveAndWait();
             }else{
-                System.out.println("AIplace");
                 ai.placeAndWait();
-                System.out.println("AIplacedone");
+                showTurnNotification("AI placement done\n\n<-- Click to shoot!");
             }
         }
-
         setPlayer1Turn(true);
-         setAITurn(false);
+        setAITurn(false);
     }
 
     /**
@@ -349,11 +305,8 @@ public class BattleshipMain extends GameApplication {
         }
 
         buildBackground();
-
         getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
-        ClickBehaviourComponent.canClick = true;
-
-
+        canClick = true;
     }
 
 

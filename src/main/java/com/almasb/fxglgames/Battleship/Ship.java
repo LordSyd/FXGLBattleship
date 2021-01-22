@@ -47,7 +47,10 @@ public class Ship extends Parent {
         return y;
     }
 
-
+    /**
+     * methods not used at the moment, for future proofing
+     * @return
+     */
 
     public int getHealth() {
         return health;

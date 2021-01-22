@@ -53,9 +53,6 @@ public class GameOverScreen  extends SubScene implements EventHandler<ActionEven
     @Override
     public void handle(ActionEvent event) {
         getAudioPlayer().stopAllMusic();
-
-
-
         getGameController().gotoMainMenu();
 
     }

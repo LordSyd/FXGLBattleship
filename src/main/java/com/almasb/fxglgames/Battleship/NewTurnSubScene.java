@@ -10,13 +10,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
+import static com.almasb.fxglgames.Battleship.ShipFactory.*;
+import static com.almasb.fxglgames.Battleship.TileFactory.*;
+import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
 /**
  * This class governs the layout of the screen shown between turns. It gets passed the state of the game through it's
  * constructor. First case checks if the ships are placed, if not the player gets a message to place ships.
  * After the ships are placed the next message indicates turn order of the players. GameRunning is true after the ships are placed.
  */
 
-//todo get rid of placeholder text
 
 public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEvent> {
 
@@ -66,17 +69,16 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
     public void handle(ActionEvent event) {
 
         Player activePlayer;
-
         System.out.println("pressed");
+        closeTurnMenu();
+        updateBoardState();
 
-        BattleshipMain.closeTurnMenu();
-        TileFactory.updateBoardState();
-        if(BattleshipMain.isPlayer1Turn()){
-            activePlayer = BattleshipMain.player1;
+        if(isPlayer1Turn()){
+            activePlayer = player1;
         }else{
-            activePlayer = BattleshipMain.player2;
+            activePlayer = player2;
         }
-        ShipFactory.updateShipSpawns(activePlayer);
+        updateShipSpawns(activePlayer);
     }
 }
 

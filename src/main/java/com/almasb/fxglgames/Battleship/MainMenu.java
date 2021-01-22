@@ -18,6 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
+
+
 /**
  * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
  * */
@@ -29,24 +32,20 @@ public class MainMenu extends FXGLMenu {
 
 
 
-        Runnable testAction = this::fireNewGame;
+        Runnable newGame = this::fireNewGame;
 
-        var againstAI =  createActionButton("Against AI", testAction);
-        var twoPlayer =  createActionButton("Two Player", testAction);
-
-
+        var againstAI =  createActionButton("Against AI", newGame);
+        var twoPlayer =  createActionButton("Two Player", newGame);
 
         EventHandler<ActionEvent> event = e -> {
             FXGL.getAudioPlayer().stopAllMusic();
-            testAction.run();
+            newGame.run();
 
         };
         EventHandler<ActionEvent> AIEvent = e -> {
             FXGL.getAudioPlayer().stopAllMusic();
-
-            BattleshipMain.setAIActive(true);
-            System.out.println(BattleshipMain.isAIActive());
-            testAction.run();
+            setAIActive(true);
+            newGame.run();
 
 
         };
@@ -55,6 +54,7 @@ public class MainMenu extends FXGLMenu {
 
         Slider volume = new Slider(0.0, 1.0, 1.0);
         volume.valueProperty().bindBidirectional(FXGL.getSettings().globalMusicVolumeProperty());
+
         Slider sound = new Slider(0.0, 1.0, 1.0);
         sound.valueProperty().bindBidirectional(FXGL.getSettings().globalSoundVolumeProperty());
 
@@ -74,8 +74,6 @@ public class MainMenu extends FXGLMenu {
         hBoxSound.setTranslateX(100);
         hBoxSound.setTranslateY(500);
 
-
-
         againstAI.setOnAction(AIEvent);
         againstAI.setTranslateX(400);
         againstAI.setTranslateY(300);
@@ -88,11 +86,7 @@ public class MainMenu extends FXGLMenu {
         twoPlayer.setScaleX(2);
         twoPlayer.setScaleY(1.5);
 
-
-
         getContentRoot().getChildren().addAll(againstAI, twoPlayer, hBoxMusic, hBoxSound);
-
-
     }
 
 

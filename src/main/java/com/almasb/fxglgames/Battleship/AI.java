@@ -5,15 +5,16 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-import static com.almasb.fxglgames.Battleship.BattleshipMain.setAITurn;
-import static com.almasb.fxglgames.Battleship.BattleshipMain.setPlayer1Turn;
+import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
+import static com.almasb.fxglgames.Battleship.TileFactory.*;
+import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
+
 
 
 public class AI {
 
 
-    public AI() {
-    }
+    public AI() {}
 
     /**
      * wait-methods, for giving the player visual feedback
@@ -48,18 +49,21 @@ public class AI {
              tryPlacementY = randomGenerator.nextInt(10);
              tryOrientation = randomGenerator.nextBoolean();
              shipToPlace = new Ship(
-                     BattleshipMain.player2ShipsToPlace,
+                     player2ShipsToPlace,
                      tryOrientation,
                      tryPlacementX,
                      tryPlacementY);
 
-             validPlacement = BattleshipMain.player2.placeShip(shipToPlace, tryPlacementX, tryPlacementY);
+             validPlacement = player2.placeShip(
+                     shipToPlace,
+                     tryPlacementX,
+                     tryPlacementY);
              if (validPlacement){
-                 BattleshipMain.player2ShipsToPlace--;
+                 player2ShipsToPlace--;
              }
 
-        }while(BattleshipMain.player2ShipsToPlace != 0);
-         ClickBehaviourComponent.canClick = true;
+        }while(player2ShipsToPlace != 0);
+         canClick = true;
     }
 
     /**
@@ -77,18 +81,14 @@ public class AI {
         boolean isDone = false;
 
         do{
-
-
             shotX = randomGenerator.nextInt(10);
             shotY = randomGenerator.nextInt(10);
 
-            isDone = BattleshipMain.player1.shoot(shotX, shotY);
-            System.out.println("ai shot success");
-            if (!BattleshipMain.player1.isDead()){
+            isDone = player1.shoot(shotX, shotY);
 
-                TileFactory.updateBoardState();}
+            if (!player1.isDead()){updateBoardState();}
         }while(!isDone);
-        ClickBehaviourComponent.canClick = true;
+        canClick = true;
     }
 
 
