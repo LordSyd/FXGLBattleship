@@ -4,6 +4,8 @@ package com.almasb.fxglgames.Battleship;
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.audio.Music;
 import com.almasb.fxgl.entity.Entity;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
@@ -15,11 +17,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
+import static com.almasb.fxgl.dsl.FXGL.*;
+import static com.almasb.fxgl.dsl.FXGL.getAppWidth;
 
 /**
  * Still a little work in progress, buttons for AI and 2 Player working and volume slider is also functional
@@ -94,7 +98,15 @@ public class MainMenu extends FXGLMenu {
 
 
 
-        getContentRoot().getChildren().addAll(againstAI, twoPlayer, hBoxMusic, hBoxSound);
+        Image image = getAssetLoader().loadImage("mainscreen.png");
+
+        ImageView bg = new ImageView(image);
+
+        bg.setFitHeight(getAppHeight());
+        bg.setFitWidth(getAppWidth());
+
+        StackPane background = new StackPane(bg);
+        getContentRoot().getChildren().addAll(background, againstAI, twoPlayer, hBoxMusic, hBoxSound);
 
 
     }

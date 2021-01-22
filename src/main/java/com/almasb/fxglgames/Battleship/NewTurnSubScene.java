@@ -5,6 +5,8 @@ import com.almasb.fxgl.scene.SubScene;
 import com.almasb.fxgl.ui.FXGLButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -29,6 +31,8 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
                 .scale(1,1)
                 .buildAndAttach();
     }
+
+
 
 
     public NewTurnSubScene(int nextPlayerID, boolean gameRunning) {
