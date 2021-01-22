@@ -3,7 +3,6 @@ package com.almasb.fxglgames.Battleship;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.audio.Music;
-import com.almasb.fxgl.entity.Entity;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
@@ -19,6 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
+
+
 import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 /**
@@ -27,30 +29,25 @@ import static com.almasb.fxgl.dsl.FXGL.entityBuilder;
 
 public class MainMenu extends FXGLMenu {
 
-
     public MainMenu() {
         super(MenuType.MAIN_MENU);
 
 
 
-        Runnable testAction = this::fireNewGame;
+        Runnable newGame = this::fireNewGame;
 
-        var againstAI =  createActionButton("Against AI", testAction);
-        var twoPlayer =  createActionButton("Two Player", testAction);
-
-
+        var againstAI =  createActionButton("Against AI", newGame);
+        var twoPlayer =  createActionButton("Two Player", newGame);
 
         EventHandler<ActionEvent> event = e -> {
             FXGL.getAudioPlayer().stopAllMusic();
-            testAction.run();
+            newGame.run();
 
         };
         EventHandler<ActionEvent> AIEvent = e -> {
             FXGL.getAudioPlayer().stopAllMusic();
-
-            BattleshipMain.setAIActive(true);
-            System.out.println(BattleshipMain.isAIActive());
-            testAction.run();
+            setAIActive(true);
+            newGame.run();
 
 
         };
@@ -71,26 +68,24 @@ public class MainMenu extends FXGLMenu {
         percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
 
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
-        hBoxMusic.setTranslateX(424);
+        hBoxMusic.setTranslateX(104);
         hBoxMusic.setTranslateY(450);
 
         HBox hBoxSound = new HBox(15, textSound, sound, percentSound );
-        hBoxSound.setTranslateX(420);
+        hBoxSound.setTranslateX(100);
         hBoxSound.setTranslateY(500);
 
-
-
         againstAI.setOnAction(AIEvent);
-        againstAI.setTranslateX(650);
+        againstAI.setTranslateX(400);
         againstAI.setTranslateY(300);
         againstAI.setScaleX(2);
-        againstAI.setScaleY(2);
+        againstAI.setScaleY(1.5);
 
         twoPlayer.setOnAction(event);
-        twoPlayer.setTranslateX(450);
+        twoPlayer.setTranslateX(200);
         twoPlayer.setTranslateY(300);
         twoPlayer.setScaleX(2);
-        twoPlayer.setScaleY(2);
+        twoPlayer.setScaleY(1.5);
 
 
 
@@ -104,7 +99,6 @@ public class MainMenu extends FXGLMenu {
     public void onCreate() {
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
         FXGL.getAudioPlayer().loopMusic(menuSong);
-
 
     }
 
