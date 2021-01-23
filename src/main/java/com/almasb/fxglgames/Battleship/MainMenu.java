@@ -35,6 +35,7 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 public class MainMenu extends FXGLMenu {
 
     public MainMenu() {
+
         super(MenuType.MAIN_MENU);
 
 
@@ -45,6 +46,7 @@ public class MainMenu extends FXGLMenu {
         var twoPlayer =  createActionButton("Two Player", newGame);
 
         EventHandler<ActionEvent> event = e -> {
+            setAIActive(false);
             FXGL.getAudioPlayer().stopAllMusic();
             newGame.run();
 
