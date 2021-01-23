@@ -46,7 +46,7 @@ public class MainMenu extends FXGLMenu {
         var twoPlayer =  createActionButton("Two Player", newGame);
 
         EventHandler<ActionEvent> event = e -> {
-            setAIActive(false);
+
             FXGL.getAudioPlayer().stopAllMusic();
             newGame.run();
 
@@ -113,6 +113,7 @@ public class MainMenu extends FXGLMenu {
 
     @Override
     public void onCreate() {
+        setAIActive(false);
         Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
         FXGL.getAudioPlayer().stopAllMusic();
         FXGL.getAudioPlayer().loopMusic(menuSong);
