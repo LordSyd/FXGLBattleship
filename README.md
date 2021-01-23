@@ -3,7 +3,7 @@
 For the original template, go to https://github.com/AlmasB/FXGL-MavenGradle
 
 ## Uses Maven:
-if maven is not available on you right side build tab, right click on pom.xml
+if maven is not available on your right side build tab, right click on pom.xml
 
 ![img.png](img.png)
 
