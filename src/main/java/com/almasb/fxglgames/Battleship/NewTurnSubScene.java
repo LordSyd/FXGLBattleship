@@ -54,8 +54,8 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
             }
         }else{
                 switch (nextPlayerID){
-                    case 1 -> nextPlayerText = "Player One - It´s your turn!";
-                    case 2 -> nextPlayerText = "Player Two - It´s your turn!";
+                    case 1 -> nextPlayerText = "Player One - your turn!";
+                    case 2 -> nextPlayerText = "Player Two - your turn!";
                 }
             }
 
