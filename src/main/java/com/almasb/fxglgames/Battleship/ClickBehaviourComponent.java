@@ -1,7 +1,6 @@
 package com.almasb.fxglgames.Battleship;
 
-import com.almasb.fxgl.audio.Music;
-import com.almasb.fxgl.audio.Sound;
+
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.component.Component;
@@ -61,7 +60,7 @@ public class ClickBehaviourComponent extends Component{
 
 
     public void onPrimaryClick() {
-        System.out.println(canClick);
+
         if (canClick) {
 
             if (isPlayer1Turn()) {
@@ -132,7 +131,7 @@ public class ClickBehaviourComponent extends Component{
                                                 entity.getProperties().getValue("y")))
                                 {
                                     waitAfterTurn();
-                                    System.out.println(canClick);
+
                                 }
                             }
 
@@ -151,7 +150,6 @@ public class ClickBehaviourComponent extends Component{
                 }
             }
             TileFactory.updateBoardState();
-
 
         }
     }

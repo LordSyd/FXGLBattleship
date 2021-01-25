@@ -7,7 +7,7 @@ import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -30,11 +30,11 @@ public class ShipFactory implements EntityFactory {
     private static String nextShipSprite;
 
     /**
-     * resolves a given ship type given by its length/typefield and its orientation to a sprite saved on disk
+     * resolves a given ship type given by its length/typefield and its orientation to a sprite name saved on disk
      *
-     * @param type
-     * @param vertical
-     * @return
+     * @param type int
+     * @param vertical boolean
+     * @return String
      */
 
     private static String spriteResolver(int type, boolean vertical){
@@ -63,7 +63,7 @@ public class ShipFactory implements EntityFactory {
 
     /**
      * spawns ships
-     * @param player
+     * @param player Player
      */
 
     public static void updateShipSpawns(Player player) {
@@ -82,7 +82,7 @@ public class ShipFactory implements EntityFactory {
     }
 
     @Spawns("ship")
-    public Entity newShip(SpawnData data) throws FileNotFoundException {
+    public Entity newShip(SpawnData data){
 
        /* The code inside here is redundant - still, keeping it for reference how javaFX handles asset loading
 
@@ -90,7 +90,6 @@ public class ShipFactory implements EntityFactory {
         FileInputStream input = new FileInputStream(test.getAbsolutePath());
         Image img = new Image(input);
         ImageView view = new ImageView(img);*/
-
 
         var ship = FXGL.entityBuilder(data)
                 .view(nextShipSprite)

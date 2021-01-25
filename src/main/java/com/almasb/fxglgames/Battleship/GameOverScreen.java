@@ -1,6 +1,5 @@
 package com.almasb.fxglgames.Battleship;
 
-import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.scene.SubScene;
 import com.almasb.fxgl.ui.FXGLButton;
 import javafx.event.ActionEvent;

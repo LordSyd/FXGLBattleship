@@ -9,10 +9,10 @@ import javafx.scene.Parent;
  */
 
 public class Ship extends Parent {
-    private int type;
-    private boolean vertical = true;
-    private double x;
-    private double y;
+    private final int type;
+    private final boolean vertical;
+    private final double x;
+    private final double y;
 
     private int health;
 
@@ -30,18 +30,13 @@ public class Ship extends Parent {
         return type;
     }
 
-
-
     public boolean isVertical() {
         return vertical;
     }
 
-
     public double getX() {
         return x;
     }
-
-
 
     public double getY() {
         return y;

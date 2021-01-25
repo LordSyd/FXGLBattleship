@@ -5,8 +5,7 @@ import com.almasb.fxgl.scene.SubScene;
 import com.almasb.fxgl.ui.FXGLButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +15,8 @@ import static com.almasb.fxgl.dsl.FXGL.*;
 import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 import static com.almasb.fxglgames.Battleship.ShipFactory.*;
 import static com.almasb.fxglgames.Battleship.TileFactory.*;
-import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
+
+
 /**
  * This class governs the layout of the screen shown between turns. It gets passed the state of the game through it's
  * constructor. First case checks if the ships are placed, if not the player gets a message to place ships.

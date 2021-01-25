@@ -39,10 +39,7 @@ public class BattleshipMain extends GameApplication {
     static protected int player2ShipsToPlace;
     static private boolean gameRunning;
     static private boolean player1Turn;
-    static protected boolean betweenTurnMenuActive;
-    static protected boolean GameOverMenuActive;
-    static protected boolean AIActive;
-    static boolean AITurn;
+    static private boolean AIActive;
     static protected AI ai;
 
     private int deadPlayer = 0;
@@ -53,9 +50,7 @@ public class BattleshipMain extends GameApplication {
     public static boolean isAIActive() {
         return AIActive;
     }
-    public static void setAITurn(boolean turn) {
-        BattleshipMain.AITurn = turn;
-    }
+
     public static boolean isPlayer1Turn() {
         return player1Turn;
     }
@@ -102,7 +97,6 @@ public class BattleshipMain extends GameApplication {
 
         //Spawn  hitBoard player 1
         spawnHitBoard(1);
-        System.out.println("spawned");
         //Spawn shipBoard player1
         spawnShipBoard(1);
 
@@ -129,8 +123,6 @@ public class BattleshipMain extends GameApplication {
         player2ShipsToPlace = 5;
         gameRunning = false;
         player1Turn = true;
-        betweenTurnMenuActive = false;
-        GameOverMenuActive = false;
         ai = new AI();
     }
 
@@ -148,7 +140,6 @@ public class BattleshipMain extends GameApplication {
         }
         deadPlayer = checkPlayerDead();
         if (deadPlayer != 0) {
-            GameOverMenuActive = true;
             showGameOverMenu();
         }
 
@@ -206,17 +197,26 @@ public class BattleshipMain extends GameApplication {
 
 
         Text instructions = FXGL.getUIFactoryService().newText(
-                "CONTROLS\n--> Left Click: \n      Vertical placing\n" +
-                        "--> Right Click: \n      Horizontal placing\n" +
-                        "\n\n" +
-                        "- Top Board\n " +
-                        "shooting\n\n" +
-                        "- Bottom Board\n" +
-                        " place ships\n" +
-                        "\n\n" +
-                        "Press escape \nto bring up menu" +
-                        "\n\n\n" +
-                        "         HAVE FUN!!!",
+                """
+                        CONTROLS
+                        --> Left Click:\s
+                              Vertical placing
+                        --> Right Click:\s
+                              Horizontal placing
+
+
+                        - Top Board
+                         shooting
+
+                        - Bottom Board
+                         place ships
+
+
+                        Press escape\s
+                        to bring up menu
+
+
+                                 HAVE FUN!!!""",
                         Color.BLACK, 18);
         instructions.setTextAlignment(TextAlignment.LEFT);
 
@@ -277,7 +277,7 @@ public class BattleshipMain extends GameApplication {
 
     static protected void startAITurn(){
         setPlayer1Turn(false);
-        setAITurn(true);
+
 
         if(AIActive && !player1Turn){
             if (gameRunning){
@@ -288,7 +288,7 @@ public class BattleshipMain extends GameApplication {
             }
         }
         setPlayer1Turn(true);
-        setAITurn(false);
+
     }
 
     /**
