@@ -1,13 +1,13 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import com.almasb.fxgl.dsl.FXGL;
 import javafx.util.Duration;
 
 import java.util.Random;
 
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
-import static com.almasb.fxglgames.Battleship.TileFactory.*;
-import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
+import static ac.at.fhcampuswien.Battleship.BattleshipMain.*;
+import static ac.at.fhcampuswien.Battleship.TileFactory.*;
+import static ac.at.fhcampuswien.Battleship.ClickBehaviourComponent.*;
 
 
 

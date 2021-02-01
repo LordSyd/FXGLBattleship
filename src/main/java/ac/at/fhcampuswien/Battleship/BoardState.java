@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import javafx.geometry.Point2D;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.entity.EntityFactory;
@@ -6,7 +6,6 @@ import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
-import javafx.event.EventType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 
 /**
  * One of the most important classes of this app and where most of the magic happens. Uses a mouse event handler attached
@@ -73,7 +71,7 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity>  iterator = player1shipTiles.iterator();
                         for (int i = 0; i < player1shipTiles.size(); i++) {
                             temp = iterator.next();
-                            int tempShipState = player1.getStateOfShipsCell(
+                            int tempShipState = BattleshipMain.player1.getStateOfShipsCell(
                                     temp.getProperties().getValue("x"),
                                     temp.getProperties().getValue("y"));
 
@@ -88,7 +86,7 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity>  iterator = player2shipTiles.iterator();
                         for (int i = 0; i < player2shipTiles.size(); i++) {
                             temp = iterator.next();
-                            int tempShipState = player2.getStateOfShipsCell(
+                            int tempShipState = BattleshipMain.player2.getStateOfShipsCell(
                                     temp.getProperties().getValue("x"),
                                     temp.getProperties().getValue("y"));
 
@@ -107,7 +105,7 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity> iterator = player1hitTiles.iterator();
                         for (int i = 0; i < player1hitTiles.size(); i++) {
                             temp = iterator.next();
-                            int hitState = player2.getStateOfHitCell(
+                            int hitState = BattleshipMain.player2.getStateOfHitCell(
                                     temp.getProperties().getValue("x"),
                                     temp.getProperties().getValue("y"));
 
@@ -121,7 +119,7 @@ public class TileFactory implements EntityFactory {
                         Iterator<Entity> iterator = player2hitTiles.iterator();
                         for (int i = 0; i < player2hitTiles.size(); i++) {
                             temp = iterator.next();
-                            int hitState = player1.getStateOfHitCell(
+                            int hitState = BattleshipMain.player1.getStateOfHitCell(
                                     temp.getProperties().getValue("x"),
                                     temp.getProperties().getValue("y"));
 

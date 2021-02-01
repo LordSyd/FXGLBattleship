@@ -1,5 +1,5 @@
 
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;

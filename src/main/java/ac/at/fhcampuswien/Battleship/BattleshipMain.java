@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import com.almasb.fxgl.app.GameApplication;
 import com.almasb.fxgl.app.GameSettings;
@@ -15,8 +15,8 @@ import javafx.scene.text.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxglgames.Battleship.TileFactory.*;
-import static com.almasb.fxglgames.Battleship.ClickBehaviourComponent.*;
+import static ac.at.fhcampuswien.Battleship.TileFactory.*;
+import static ac.at.fhcampuswien.Battleship.ClickBehaviourComponent.*;
 
 
 

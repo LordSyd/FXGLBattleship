@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 import com.almasb.fxgl.entity.Entity;
 import com.almasb.fxgl.scene.SubScene;
@@ -12,9 +12,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
-import static com.almasb.fxglgames.Battleship.ShipFactory.*;
-import static com.almasb.fxglgames.Battleship.TileFactory.*;
 
 
 /**
@@ -93,15 +90,15 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
 
         Player activePlayer;
 
-        closeTurnMenu();
-        updateBoardState();
+        BattleshipMain.closeTurnMenu();
+        TileFactory.updateBoardState();
 
-        if(isPlayer1Turn()){
-            activePlayer = player1;
+        if(BattleshipMain.isPlayer1Turn()){
+            activePlayer = BattleshipMain.player1;
         }else{
-            activePlayer = player2;
+            activePlayer = BattleshipMain.player2;
         }
-        updateShipSpawns(activePlayer);
+        ShipFactory.updateShipSpawns(activePlayer);
     }
 }
 

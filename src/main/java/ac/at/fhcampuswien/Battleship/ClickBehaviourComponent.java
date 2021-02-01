@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 
 import com.almasb.fxgl.dsl.FXGL;
@@ -7,9 +7,6 @@ import com.almasb.fxgl.entity.component.Component;
 import javafx.util.Duration;
 
 import static com.almasb.fxgl.dsl.FXGL.*;
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
-import static com.almasb.fxglgames.Battleship.ShipFactory.*;
-import static com.almasb.fxglgames.Battleship.TileFactory.*;
 
 
 /**
@@ -28,7 +25,7 @@ public class ClickBehaviourComponent extends Component{
     private void waitAfterTurn(){
         canClick = false;
 
-        if (!isAIActive()) {
+        if (!BattleshipMain.isAIActive()) {
             Runnable showTurnMenu = BattleshipMain::showTurnMenu;
             FXGL.getGameTimer().runOnceAfter(showTurnMenu, Duration.millis(700));
         }else{
@@ -63,12 +60,12 @@ public class ClickBehaviourComponent extends Component{
 
         if (canClick) {
 
-            if (isPlayer1Turn()) {
+            if (BattleshipMain.isPlayer1Turn()) {
                 getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
-                updateShipSpawns(player1);
+                ShipFactory.updateShipSpawns(BattleshipMain.player1);
             } else {
                 getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
-                updateShipSpawns(player2);
+                ShipFactory.updateShipSpawns(BattleshipMain.player2);
             }
 
             int playerId = entity.getProperties().getValue("Player");
@@ -76,12 +73,12 @@ public class ClickBehaviourComponent extends Component{
 
             switch (tileType) {
                 case "ship" -> {
-                    if (!isGameRunning()) {
+                    if (!BattleshipMain.isGameRunning()) {
                         switch (playerId) {
                             case 1 -> {
                                 {
-                                    if (player1.placeShip(
-                                            new Ship(player1ShipsToPlace,
+                                    if (BattleshipMain.player1.placeShip(
+                                            new Ship(BattleshipMain.player1ShipsToPlace,
                                                     primary,
                                                     entity.getX(),
                                                     entity.getY()),
@@ -89,19 +86,19 @@ public class ClickBehaviourComponent extends Component{
                                             entity.getProperties().getValue("y")))
                                         {
                                             getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
-                                        updateShipSpawns(player1);
-                                        getBoardStateColors(tileType, 1);
+                                        ShipFactory.updateShipSpawns(BattleshipMain.player1);
+                                        TileFactory.getBoardStateColors(tileType, 1);
 
-                                        if (--player1ShipsToPlace == 0) {
+                                        if (--BattleshipMain.player1ShipsToPlace == 0) {
                                             waitAfterTurn();
                                         }
                                     }
                                 }
                             }
                             case 2 -> {
-                                if (player2.placeShip(
+                                if (BattleshipMain.player2.placeShip(
                                         new Ship(
-                                                player2ShipsToPlace,
+                                                BattleshipMain.player2ShipsToPlace,
                                                 primary,
                                                 entity.getX(),
                                                 entity.getY()
@@ -110,9 +107,9 @@ public class ClickBehaviourComponent extends Component{
                                         entity.getProperties().getValue("y"))
                                 ) {
                                     getGameWorld().getEntitiesByType(ShipFactory.Type.SHIP).forEach(Entity::removeFromWorld);
-                                    updateShipSpawns(player2);
-                                    getBoardStateColors(tileType, 2);
-                                    if (--player2ShipsToPlace == 0) {
+                                    ShipFactory.updateShipSpawns(BattleshipMain.player2);
+                                    TileFactory.getBoardStateColors(tileType, 2);
+                                    if (--BattleshipMain.player2ShipsToPlace == 0) {
                                         waitAfterTurn();
                                     }
                                 }
@@ -121,11 +118,11 @@ public class ClickBehaviourComponent extends Component{
                     }
                 }
                 case "hit" -> {
-                    if (isGameRunning()) {
+                    if (BattleshipMain.isGameRunning()) {
 
                         switch (playerId) {
                             case 1 -> {
-                                if (player2.shoot(
+                                if (BattleshipMain.player2.shoot(
                                                 entity.getProperties().getValue("x"),
                                                 entity.getProperties().getValue("y")))
                                 {
@@ -135,7 +132,7 @@ public class ClickBehaviourComponent extends Component{
                             }
                             case 2 -> {
 
-                                if (player1.shoot(
+                                if (BattleshipMain.player1.shoot(
                                                 entity.getProperties().getValue("x"),
                                                 entity.getProperties().getValue("y")))
                                 {

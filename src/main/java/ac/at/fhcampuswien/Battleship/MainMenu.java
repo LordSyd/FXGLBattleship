@@ -1,4 +1,4 @@
-package com.almasb.fxglgames.Battleship;
+package ac.at.fhcampuswien.Battleship;
 
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
@@ -20,8 +20,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
-import static com.almasb.fxglgames.Battleship.BattleshipMain.*;
 
 
 import static com.almasb.fxgl.dsl.FXGL.*;
@@ -52,7 +50,7 @@ public class MainMenu extends FXGLMenu {
         };
         EventHandler<ActionEvent> AIEvent = e -> {
             getAudioPlayer().stopAllMusic();
-            setAIActive(true);
+            BattleshipMain.setAIActive(true);
             newGame.run();
 
 
@@ -112,7 +110,7 @@ public class MainMenu extends FXGLMenu {
 
     @Override
     public void onCreate() {
-        setAIActive(false);
+        BattleshipMain.setAIActive(false);
         Music menuSong = getAssetLoader().loadMusic("9. It's A Simulation.wav");
         getAudioPlayer().stopAllMusic();
         getAudioPlayer().loopMusic(menuSong);
