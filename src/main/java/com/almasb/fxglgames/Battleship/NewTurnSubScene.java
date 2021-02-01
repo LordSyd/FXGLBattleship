@@ -92,7 +92,7 @@ public class NewTurnSubScene  extends SubScene implements EventHandler<ActionEve
     public void handle(ActionEvent event) {
 
         Player activePlayer;
-        System.out.println("pressed");
+
         closeTurnMenu();
         updateBoardState();
 

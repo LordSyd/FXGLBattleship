@@ -125,7 +125,6 @@ public class ClickBehaviourComponent extends Component{
 
                         switch (playerId) {
                             case 1 -> {
-                                updateBoardState();
                                 if (player2.shoot(
                                                 entity.getProperties().getValue("x"),
                                                 entity.getProperties().getValue("y")))
@@ -134,9 +133,7 @@ public class ClickBehaviourComponent extends Component{
 
                                 }
                             }
-
                             case 2 -> {
-                                getBoardStateColors(tileType, 2);
 
                                 if (player1.shoot(
                                                 entity.getProperties().getValue("x"),
@@ -150,7 +147,6 @@ public class ClickBehaviourComponent extends Component{
                 }
             }
             TileFactory.updateBoardState();
-
         }
     }
 }

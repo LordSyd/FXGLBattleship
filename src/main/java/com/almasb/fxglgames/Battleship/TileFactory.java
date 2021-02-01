@@ -42,7 +42,7 @@ public class TileFactory implements EntityFactory {
 
 
     /**
-     * Method to streamline update between frames, could be optimised
+     * Helpermethod to streamline update between frames, could be optimised
      */
     static protected void updateBoardState(){
 
@@ -61,6 +61,7 @@ public class TileFactory implements EntityFactory {
      * @param boardToCheck board identifier as string
      * @param playerID player ID as int
      */
+
     static protected void getBoardStateColors(@NotNull String boardToCheck, int playerID){
 
         Entity temp;

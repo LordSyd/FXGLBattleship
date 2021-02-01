@@ -20,8 +20,7 @@ public class Player {
 
     private int health = 5+4+3+2+1; //numbers of tiles per ship type
 
-    public Player() {
-    }
+    public Player() {}
 
     public ArrayList<Ship> getShipInstances() {
         return shipInstances;

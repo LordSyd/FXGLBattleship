@@ -30,7 +30,7 @@ public class BattleshipMain extends GameApplication {
      *
      * Maybe if time remains the logic will be streamlined.
      *
-     * Also for testing purposes the boards of player one and player two are spawned on different sides of the screen
+     * Also for optical purposes the boards of player one and player two are spawned on different sides of the screen
      */
 
     static protected Player player1;
@@ -66,7 +66,6 @@ public class BattleshipMain extends GameApplication {
         settings.setMainMenuEnabled(true);
         settings.setAppIcon("icon.png");
         settings.setSceneFactory(new SceneFactory()
-
         {
             @NotNull
             @Override
@@ -138,6 +137,7 @@ public class BattleshipMain extends GameApplication {
         if (player1ShipsToPlace == 0 && player2ShipsToPlace == 0) {
             gameRunning = true;
         }
+
         deadPlayer = checkPlayerDead();
         if (deadPlayer != 0) {
             showGameOverMenu();
@@ -310,7 +310,8 @@ public class BattleshipMain extends GameApplication {
         }
 
         buildBackground();
-        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true) );
+        getGameScene().getUINodes().forEach(Node  -> Node.setVisible(true));
+
         canClick = true;
     }
 
@@ -325,17 +326,11 @@ public class BattleshipMain extends GameApplication {
 
 
         int startX = 0;
-        int startY = 0;
+        int startY = 420;
 
         switch (player){
-            case 1 -> {
-                startX = 68;
-                startY = 420;
-            }
-            case 2 -> {
-                startX = 600;
-                startY = 420;
-            }
+            case 1 -> startX = 68;
+            case 2 -> startX = 600;
         }
 
 
@@ -366,18 +361,11 @@ public class BattleshipMain extends GameApplication {
         TileFactory.player1hitTiles.clear();
         TileFactory.player2hitTiles.clear();
         int startX = 0;
-        int startY = 0;
+        int startY = 60;
 
         switch (player){
-            case 1 -> {
-                startX = 68;
-                startY = 60;
-            }
-
-            case 2 -> {
-                startX = 600;
-                startY = 60;
-            }
+            case 1 -> startX = 68;
+            case 2 -> startX = 600;
         }
 
 
@@ -395,9 +383,7 @@ public class BattleshipMain extends GameApplication {
                 }else{
                     TileFactory.player2hitTiles.add(tile);
                 }
-
             }
-
         }
     }
 
