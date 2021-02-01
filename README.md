@@ -2,7 +2,17 @@
 
 For the original template, go to https://github.com/AlmasB/FXGL-MavenGradle
 
-## Uses Maven:
+# Uses Maven and Gradle:
+
+## for Gradle:
+
+Open gradle Window:
+
+    View -> Window Tools -> Gradle
+    In window -> Tasks -> Application -> run
+
+## for Maven:
+
 if maven is not available on your right side build tab, right click on pom.xml
 
 ![img.png](img.png)

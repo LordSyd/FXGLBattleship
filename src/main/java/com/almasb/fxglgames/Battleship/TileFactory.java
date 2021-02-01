@@ -35,16 +35,16 @@ public class TileFactory implements EntityFactory {
      * by changing the tile's color. Uses 4 array lists to make check logic inside getBoardState() less complicated
      */
 
-    static ArrayList<Entity> player1shipTiles = new ArrayList<>();
-    static ArrayList<Entity> player1hitTiles = new ArrayList<>();
-    static ArrayList<Entity> player2shipTiles = new ArrayList<>();
-    static ArrayList<Entity> player2hitTiles = new ArrayList<>();
+    static protected ArrayList<Entity> player1shipTiles = new ArrayList<>();
+    static protected ArrayList<Entity> player1hitTiles = new ArrayList<>();
+    static protected ArrayList<Entity> player2shipTiles = new ArrayList<>();
+    static protected ArrayList<Entity> player2hitTiles = new ArrayList<>();
 
 
     /**
-     * Method to streamline update between frames, could be optimised
+     * Helpermethod to streamline update between frames, could be optimised
      */
-    protected static void updateBoardState(){
+    static protected void updateBoardState(){
 
         getBoardStateColors("ship",1);
         getBoardStateColors("hit",1);
@@ -61,7 +61,8 @@ public class TileFactory implements EntityFactory {
      * @param boardToCheck board identifier as string
      * @param playerID player ID as int
      */
-    protected static void getBoardStateColors(@NotNull String boardToCheck, int playerID){
+
+    static protected void getBoardStateColors(@NotNull String boardToCheck, int playerID){
 
         Entity temp;
 

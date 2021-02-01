@@ -3,13 +3,12 @@ package com.almasb.fxglgames.Battleship;
 
 import com.almasb.fxgl.app.scene.FXGLMenu;
 import com.almasb.fxgl.audio.Music;
-import com.almasb.fxgl.entity.Entity;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 import com.almasb.fxgl.app.scene.MenuType;
-import com.almasb.fxgl.dsl.FXGL;
+
 import javafx.beans.binding.StringBinding;
 
 import javafx.event.ActionEvent;
@@ -47,32 +46,32 @@ public class MainMenu extends FXGLMenu {
 
         EventHandler<ActionEvent> event = e -> {
 
-            FXGL.getAudioPlayer().stopAllMusic();
+            getAudioPlayer().stopAllMusic();
             newGame.run();
 
         };
         EventHandler<ActionEvent> AIEvent = e -> {
-            FXGL.getAudioPlayer().stopAllMusic();
+            getAudioPlayer().stopAllMusic();
             setAIActive(true);
             newGame.run();
 
 
         };
 
-        FXGL.getSettings().setGlobalMusicVolume(0.25);
+        getSettings().setGlobalMusicVolume(0.25);
 
         Slider volume = new Slider(0.0, 1.0, 1.0);
-        volume.valueProperty().bindBidirectional(FXGL.getSettings().globalMusicVolumeProperty());
+        volume.valueProperty().bindBidirectional(getSettings().globalMusicVolumeProperty());
 
         Slider sound = new Slider(0.0, 1.0, 1.0);
-        sound.valueProperty().bindBidirectional(FXGL.getSettings().globalSoundVolumeProperty());
+        sound.valueProperty().bindBidirectional(getSettings().globalSoundVolumeProperty());
 
-        var textMusic =  FXGL.getUIFactoryService().newText(FXGL.localizedStringProperty("menu.music.volume").concat(": "));
-        var percentMusic = FXGL.getUIFactoryService().newText("");
+        var textMusic =  getUIFactoryService().newText(localizedStringProperty("menu.music.volume").concat(": "));
+        var percentMusic = getUIFactoryService().newText("");
         percentMusic.textProperty().bind(volume.valueProperty().multiply(100).asString("%.0f"));
 
-        var textSound =  FXGL.getUIFactoryService().newText(FXGL.localizedStringProperty("menu.sound.volume").concat(": "));
-        var percentSound = FXGL.getUIFactoryService().newText("");
+        var textSound =  getUIFactoryService().newText(localizedStringProperty("menu.sound.volume").concat(": "));
+        var percentSound = getUIFactoryService().newText("");
         percentSound.textProperty().bind(sound.valueProperty().multiply(100).asString("%.0f"));
 
         HBox hBoxMusic = new HBox(15, textMusic, volume, percentMusic );
@@ -114,9 +113,9 @@ public class MainMenu extends FXGLMenu {
     @Override
     public void onCreate() {
         setAIActive(false);
-        Music menuSong = FXGL.getAssetLoader().loadMusic("9. It's A Simulation.wav");
-        FXGL.getAudioPlayer().stopAllMusic();
-        FXGL.getAudioPlayer().loopMusic(menuSong);
+        Music menuSong = getAssetLoader().loadMusic("9. It's A Simulation.wav");
+        getAudioPlayer().stopAllMusic();
+        getAudioPlayer().loopMusic(menuSong);
 
     }
 

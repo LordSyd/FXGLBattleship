@@ -31,7 +31,7 @@ public class BoardState {
                 new Point2D(x, y + 1)
         };
 
-        List<Integer> neighbors = new ArrayList<Integer>();
+        List<Integer> neighbors = new ArrayList<>();
 
         for (Point2D p : points) {
             if (isValidPoint(p)) {

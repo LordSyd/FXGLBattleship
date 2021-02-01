@@ -78,7 +78,7 @@ public class AI {
         int shotX;
         int shotY;
 
-        boolean isDone = false;
+        boolean isDone;
 
         do{
             shotX = randomGenerator.nextInt(10);

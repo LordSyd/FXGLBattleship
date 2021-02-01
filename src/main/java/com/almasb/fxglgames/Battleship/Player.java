@@ -20,8 +20,7 @@ public class Player {
 
     private int health = 5+4+3+2+1; //numbers of tiles per ship type
 
-    public Player() {
-    }
+    public Player() {}
 
     public ArrayList<Ship> getShipInstances() {
         return shipInstances;
@@ -52,9 +51,9 @@ public class Player {
      * 1: Miss
      * 2: Hit
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x int
+     * @param y int
+     * @return boolean
      */
 
     public boolean shoot(int x, int y){
@@ -82,10 +81,10 @@ public class Player {
      *
      * returns true if placement was successful
      *
-     * @param ship
-     * @param x
-     * @param y
-     * @return
+     * @param ship Ship
+     * @param x int
+     * @param y int
+     * @return boolean
      */
 
     public boolean placeShip(Ship ship, int x, int y) {

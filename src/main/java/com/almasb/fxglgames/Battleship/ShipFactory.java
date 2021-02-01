@@ -7,7 +7,7 @@ import com.almasb.fxgl.entity.EntityFactory;
 import com.almasb.fxgl.entity.SpawnData;
 import com.almasb.fxgl.entity.Spawns;
 
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -30,18 +30,20 @@ public class ShipFactory implements EntityFactory {
     private static String nextShipSprite;
 
     /**
-     * resolves a given ship type given by its length/typefield and its orientation to a sprite saved on disk
+     * resolves a given ship type given by its length/typefield and its orientation to a sprite name saved on disk
      *
-     * @param type
-     * @param vertical
-     * @return
+     * Note: vertical ship names should be horizontal, files are named wrong
+     *
+     * @param type int
+     * @param horizontal boolean
+     * @return String
      */
 
-    private static String spriteResolver(int type, boolean vertical){
+    private static String spriteResolver(int type, boolean horizontal){
         String sprite = null;
 
 
-        if (!vertical){
+        if (!horizontal){
             switch (type){
                 case 1 -> sprite = "ship_1x1.png";
                 case 2 -> sprite = "ship_1x2_vertical.png";
@@ -63,7 +65,7 @@ public class ShipFactory implements EntityFactory {
 
     /**
      * spawns ships
-     * @param player
+     * @param player Player
      */
 
     public static void updateShipSpawns(Player player) {
@@ -82,15 +84,15 @@ public class ShipFactory implements EntityFactory {
     }
 
     @Spawns("ship")
-    public Entity newShip(SpawnData data) throws FileNotFoundException {
+    public Entity newShip(SpawnData data){
 
        /* The code inside here is redundant - still, keeping it for reference how javaFX handles asset loading
 
-       File test = new File(nextShipSpriteLocation);
+        File test = new File(nextShipSpriteLocation);
         FileInputStream input = new FileInputStream(test.getAbsolutePath());
         Image img = new Image(input);
-        ImageView view = new ImageView(img);*/
-
+        ImageView view = new ImageView(img);
+        */
 
         var ship = FXGL.entityBuilder(data)
                 .view(nextShipSprite)
